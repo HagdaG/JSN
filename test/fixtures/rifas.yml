@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  descricao: MyText
+  preco_ticket: 9.99
+  data_sorteio: 2025-06-04 19:23:53
+  total_tickets: 1
+  tickets_vendidos: 1
+  status: MyString
+
+two:
+  nome: MyString
+  descricao: MyText
+  preco_ticket: 9.99
+  data_sorteio: 2025-06-04 19:23:53
+  total_tickets: 1
+  tickets_vendidos: 1
+  status: MyString

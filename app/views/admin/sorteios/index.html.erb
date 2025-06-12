@@ -1,0 +1,57 @@
+<%# app/views/admin/sorteios/index.html.erb %>
+
+<h1 class="text-3xl font-bold mb-6 text-admin-accent">Gerenciar Sorteios</h1>
+
+<div class="mb-4">
+  <%= link_to 'Novo Sorteio', new_admin_sorteio_path, class: 'bg-admin-accent hover:bg-admin-text text-white font-bold py-2 px-4 rounded-md transition duration-300' %>
+</div>
+
+<% if @sorteios.any? %>
+  <table class="min-w-full bg-admin-sidebar rounded-lg shadow-md">
+    <thead>
+      <tr>
+        <th class="py-3 px-4 text-left text-admin-text border-b border-admin-bg">Título</th>
+        <th class="py-3 px-4 text-left text-admin-text border-b border-admin-bg">Descrição</th>
+        <th class="py-3 px-4 text-left text-admin-text border-b border-admin-bg">Link</th>
+        <th class="py-3 px-4 text-left text-admin-text border-b border-admin-bg">Data do Sorteio</th>
+        <th class="py-3 px-4 text-left text-admin-text border-b border-admin-bg">Ativo</th>
+        <th class="py-3 px-4 text-left text-admin-text border-b border-admin-bg">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sorteios.each do |sorteio| %>
+        <tr class="border-b border-admin-bg">
+          <td class="py-3 px-4"><%= sorteio.titulo %></td>
+          <td class="py-3 px-4 text-sm"><%= truncate(sorteio.descricao, length: 50) %></td>
+          <td class="py-3 px-4"><%= link_to 'Acessar Link', sorteio.link_sorteio, target: "_blank", class: "text-admin-accent hover:underline" if sorteio.link_sorteio.present? %></td>
+          <td class="py-3 px-4"><%= sorteio.data_sorteio&.strftime("%d/%m/%Y %H:%M") %></td>
+          <td class="py-3 px-4">
+            <%= sorteio.ativo ? 'Sim' : 'Não' %>
+            <%= button_to toggle_ativo_admin_sorteio_path(sorteio),
+                          method: :patch,
+                          data: { turbo: true },
+                          class: 'ml-2 text-blue-400 hover:text-blue-600 transition-colors duration-200 border-none bg-transparent',
+                          form: { class: 'inline-block' } do %>
+              <%# Ícone de Visto Verde para Ativar/Desativar %>
+              <i class="fas fa-check-circle text-green-500 text-lg hover:text-green-700"></i>
+            <% end %>
+          </td>
+          <td class="py-3 px-4">
+            <%= link_to edit_admin_sorteio_path(sorteio), class: 'text-yellow-400 hover:text-yellow-600 mr-2 transition-colors duration-200' do %>
+              <%# Ícone de Lápis Amarelo para Editar %>
+              <i class="fas fa-pencil-alt text-lg"></i>
+            <% end %>
+            <%= link_to admin_sorteio_path(sorteio),
+                        data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' },
+                        class: 'text-red-500 hover:text-red-700 transition-colors duration-200' do %>
+              <%# Ícone de Lixeira Vermelha para Excluir %>
+              <i class="fas fa-trash-alt text-lg"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="text-admin-text mt-4">Nenhum sorteio cadastrado ainda.</p>
+<% end %>

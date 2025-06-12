@@ -1,0 +1,2 @@
+class Rifa < ApplicationRecord
+end

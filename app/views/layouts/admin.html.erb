@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Painel Admin JSN</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%# CDN do Tailwind CSS %>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configurações do Tailwind CSS para todas as cores customizadas
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'admin-bg': '#333333',     /* Fundo escuro geral do admin */
+            'admin-sidebar': '#222222',    /* Cor da barra lateral do admin */
+            'admin-text': '#E0E0E0',       /* Cor do texto principal do admin */
+            'admin-accent': '#FF00FF',     /* Sua cor neon vibrante */
+
+            'purple-medium': '#8B008B',    /* Seu roxo médio (para o container de login) */
+            'purple-dark': '#4B0082',      /* Roxo mais escuro (para botões/bordas) */
+            'purple-light': '#DA70D6',     /* Roxo mais claro (para fundo de campo de input) */
+            'gray-input-text': '#343a40', /* Cor do texto dentro dos inputs */
+          },
+        }
+      }
+    }
+  </script>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+  <style>
+    /* Estilos específicos para o layout do admin */
+    body.admin-layout {
+      background-color: #333333; /* Fundo escuro para o admin */
+      color: #E0E0E0; /* Texto claro */
+      /* Removendo a imagem de fundo que pode vir de application.scss */
+      background-image: none !important;
+      background-attachment: unset !important;
+      background-size: unset !important;
+      background-position: unset !important;
+    }
+    /* Isso garante que a barra lateral e o main preencham a altura */
+    html, body {
+      height: 100%;
+    }
+  </style>
+</head>
+<body class="admin-layout flex h-full"> <%# Adicionado h-full para garantir altura completa %>
+  <aside class="w-64 bg-admin-sidebar p-6 flex flex-col justify-between shadow-lg">
+    <div>
+      <h2 class="text-2xl font-bold mb-8 text-admin-accent">JSN Admin</h2>
+      <nav>
+        <ul class="space-y-4">
+          <li>
+            <%# Destaque para a página ativa %>
+            <%= link_to 'Dashboard', admin_dashboard_path, class: "block transition duration-200 #{current_page?(admin_dashboard_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %>
+          </li>
+          <% if current_admin_user&.is_principal? %> <%# Condição para mostrar apenas para admin principal %>
+            <li>
+              <%# Destaque para a página ativa de Gerenciamento de Administradores %>
+              <%= link_to 'Gerenciar Administradores', admin_admin_users_path, class: "block transition duration-200 #{current_page?(admin_admin_users_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %> <%# <--- CORRIGIDO A ROTA AQUI! %>
+            </li>
+          <% end %>
+          <li>
+            <%# Destaque para a página ativa de Mensagens %>
+            <%= link_to 'Mensagens', admin_messages_path, class: "block transition duration-200 #{current_page?(admin_messages_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %>
+          </li>
+          <li>
+            <%# Destaque para a página ativa de Parceiros %>
+            <%= link_to 'Parceiros', admin_partners_path, class: "block transition duration-200 #{current_page?(admin_partners_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %>
+          </li>
+          <li>
+            <%# Destaque para a página ativa de Links de Votação %>
+            <%= link_to 'Links de Votação', admin_vote_links_path, class: "block transition duration-200 #{current_page?(admin_vote_links_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %>
+          </li>
+          <li>
+            <%# Destaque para a página ativa de Sorteios %>
+            <%= link_to 'Sorteios', admin_sorteios_path, class: "block transition duration-200 #{current_page?(admin_sorteios_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %>
+          </li>
+          
+          <li>
+            <%# Destaque para a página ativa de Novidades %>
+            <%= link_to 'Novidades', admin_news_posts_path, class: "block transition duration-200 #{current_page?(admin_news_posts_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="mt-8">
+      <%= link_to 'Sair', destroy_admin_user_session_path, data: { turbo_method: :delete }, class: 'block bg-admin-accent hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md text-center transition duration-300' %>
+    </div>
+  </aside>
+
+  <main class="flex-grow p-8 bg-admin-bg">
+    <%# Mensagens flash do Rails %>
+    <% if notice %>
+      <div class="bg-green-500 text-white p-3 rounded-md mb-4"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="bg-red-500 text-white p-3 rounded-md mb-4"><%= alert %></div>
+    <% end %>
+
+    <%# Perfil do Admin no canto superior direito %>
+    <div class="fixed top-4 right-4 bg-admin-sidebar text-white py-2 px-4 rounded-full shadow-lg z-50 flex items-center space-x-2">
+      <% if current_admin_user.photo.attached? %>
+        <%= image_tag current_admin_user.photo, class: "w-8 h-8 object-cover rounded-full border border-admin-accent" %>
+      <% else %>
+        <%# Ícone padrão se não tiver foto %>
+        <i class="fas fa-user-circle text-admin-accent text-2xl"></i>
+      <% end %>
+      <span class="text-admin-text text-sm">
+        Olá, <%= current_admin_user.name.presence || current_admin_user.email.split('@').first.capitalize %>!
+      </span>
+      <%# Link para editar o perfil %>
+      <%= link_to edit_admin_profile_path, class: "ml-2 text-admin-accent hover:text-admin-text transition duration-200" do %>
+        <i class="fas fa-cog text-lg"></i> <%# Ícone de engrenagem para editar perfil %>
+      <% end %>
+    </div>
+
+    <%= yield %>
+  </main>
+</body>
+</html>

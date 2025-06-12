@@ -1,0 +1,2 @@
+class VoteLink < ApplicationRecord
+end

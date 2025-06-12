@@ -1,23 +1,96 @@
-<h1>Conheça a Equipe JSN</h1>
-<p>O JSN é formado por um time de fãs dedicadas que fazem tudo acontecer com amor e voluntariado.</p>
+<div class="py-12">
+  <h1 class="text-5xl font-bold text-purple-300 text-center mb-10" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Nossa Equipe e Parceiros JSN</h1>
 
-<div class="row">
-  <div class="col-md-4">
-    <div class="card">
-      <img src="https://via.placeholder.com/300" class="card-img-top" alt="Representante 1">
-      <div class="card-body">
-        <h5 class="card-title">Júlia Nunes</h5>
-        <p class="card-text">Idealizadora do projeto. Responsável pela comunicação com os fãs e organização geral.</p>
+  <%# SEÇÃO DA VITÓRIA (ADMIN PRINCIPAL) - CONTAINER CENTRALIZADO E DESTAQUE %>
+  <%# A variável @vitoria é carregada no PagesController#equipe %>
+  <% if @vitoria.present? %>
+  <section class="mb-16 bg-purple-medium p-8 rounded-lg shadow-xl text-center flex flex-col items-center max-w-2xl mx-auto border-4 border-gold-accent">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><%= @vitoria.name.presence || "Vitória Luiza Almeida de Azevedo" %></h2>
+    <% if @vitoria.photo.attached? %>
+      <%= image_tag @vitoria.photo, class: "w-48 h-48 object-cover rounded-full mb-6 border-4 border-pink-neon" %>
+    <% else %>
+      <%# Imagem padrão se não houver foto ou se não for carregada %>
+      <img src="<%= asset_path '/vitoria_luiza.jpg' %>" alt="Vitória Luiza Almeida de Azevedo" class="w-48 h-48 object-cover rounded-full mb-6 border-4 border-pink-neon">
+    <% end %>
+    <p class="text-lg leading-relaxed text-gray-300 mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      <%= @vitoria.bio.presence || "Fundadora líder. Principal responsável pela direção estratégica e operacional do projeto Juntos e Shallow Now - JSN." %>
+    </p>
+    <%# Link para redes sociais da Vitória (assumindo que AdminUser pode ter social_link ou você adiciona um em AdminUser.rb) %>
+    <% if @vitoria.social_link.present? %>
+      <a href="<%= @vitoria.social_link %>" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center justify-center px-6 py-3 border-2 border-pink-neon text-pink-neon bg-white font-bold rounded-full text-lg shadow-md transition duration-300 mt-4 hover:bg-gold-accent hover:text-black active:bg-gold-accent active:text-black"
+         style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+        <i class="fab fa-instagram mr-2"></i> Visitar Rede Social
+      </a>
+    <% end %>
+  </section>
+  <% end %>
+
+  <%# --- SEÇÃO DE COLABORADORES JSN (OUTROS ADMINUSERS) --- %>
+  <%# A variável @colaboradores é carregada no PagesController#equipe %>
+  <section class="mt-16 bg-purple-dark p-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-8 text-center" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Nossos Colaboradores da Equipe</h2>
+
+    <% if @colaboradores.any? %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <% @colaboradores.each do |colaborador| %>
+          <div class="bg-purple-medium p-6 rounded-lg shadow-md border border-purple-light flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300">
+            <% if colaborador.photo.attached? %>
+              <%= image_tag colaborador.photo, class: "w-32 h-32 object-cover rounded-full mt-2 mb-4 border-2 border-pink-neon" %>
+            <% else %>
+              <img src="<%= asset_path 'default_profile.png' %>" alt="Foto Padrão" class="w-32 h-32 object-cover rounded-full mt-2 mb-4 border-2 border-purple-light">
+            <% end %>
+            <h3 class="text-2xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><%= colaborador.name.presence || colaborador.email.split('@').first.capitalize %></h3>
+            <p class="text-sm text-gray-300 mb-4 flex-grow" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><%= colaborador.bio.presence || "Sem biografia." %></p>            <%# Links sociais para colaboradores (se tiverem, adicione a coluna social_link ao AdminUser se precisar) %>
+            <% if colaborador.social_link.present? %>
+              <a href="<%= colaborador.social_link %>" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center px-4 py-2 border-2 border-pink-neon text-pink-neon bg-white font-bold rounded-full text-sm shadow-md transition duration-300 mt-auto hover:bg-gold-accent hover:text-black active:bg-gold-accent active:text-black"
+                 style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+                <i class="fab fa-instagram mr-2"></i> Perfil
+              </a>
+            <% end %>
+          </div>
+        <% end %>
       </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card">
-      <img src="https://via.placeholder.com/300" class="card-img-top" alt="Representante 2">
-      <div class="card-body">
-        <h5 class="card-title">Sara Kim</h5>
-        <p class="card-text">Designer do projeto e responsável pelas artes das campanhas e rifas.</p>
+    <% else %>
+      <p class="text-lg leading-relaxed text-gray-300 text-center" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Nenhum colaborador da equipe cadastrado ainda.</p>
+    <% end %>
+  </section>
+
+  <%# --- SEÇÃO DE OUTROS PARCEIROS EXTERNOS --- %>
+  <%# A variável @partners é carregada no PagesController#equipe %>
+  <section class="mt-16 bg-purple-dark p-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-8 text-center" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Nossos Parceiros Externos</h2>
+
+    <% if @partners.any? %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <% @partners.each do |partner| %>
+          <div class="bg-purple-medium p-6 rounded-lg shadow-md border border-purple-light flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300">
+            <% if partner.photo.attached? %>
+              <%= image_tag partner.photo, class: "w-32 h-32 object-cover rounded-full mt-2 mb-4 border-2 border-pink-neon" %>
+            <% else %>
+              <img src="<%= asset_path 'default_profile.png' %>" alt="Foto Padrão" class="w-32 h-32 object-cover rounded-full mt-2 mb-4 border-2 border-purple-light">
+            <% end %>
+            <h3 class="text-2xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><%= partner.name %></h3>
+            <p class="text-sm text-gray-300 mb-4 flex-grow" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><%= partner.bio %></p>
+            <% if partner.social_link.present? %>
+              <a href="<%= partner.social_link %>" target="_blank" rel="noopener noreferrer"
+                         class="inline-flex items-center justify-center px-4 py-2 border-2 border-pink-neon text-pink-neon bg-white font-bold rounded-full text-sm shadow-md transition duration-300 mt-auto hover:bg-gold-accent hover:text-black active:bg-gold-accent active:text-black"
+                         style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+                <i class="fab fa-instagram mr-2"></i> Visitar Rede Social
+              </a>
+            <% end %>
+          </div>
+        <% end %>
       </div>
-    </div>
+    <% else %>
+      <p class="text-lg leading-relaxed text-gray-300 text-center" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Nenhum parceiro externo cadastrado ainda.</p>
+    <% end %>
+  </section>
+
+  <%# BOTÃO: TORNE-SE COLABORADOR! - COM HOVER E ACTIVE NA COR ROSA NEON ESCURO (AGORA DEFINIDO EM application.html.erb) %>
+  <div class="text-center mt-12">
+    <%= link_to 'Torne-se Colaborador!', support_path, class: 'bg-pink-neon text-white font-bold py-4 px-8 rounded-lg shadow-lg transition duration-300 inline-block hover:bg-pink-neon-dark active:bg-pink-neon-dark',
+                style: "text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;" %>
   </div>
 </div>

@@ -1,0 +1,44 @@
+<%# app/views/admin/messages/_message_list.html.erb %>
+
+<div id="<%= status_id %>" class="mb-12">
+  <h2 class="text-2xl font-bold mb-6 text-admin-text"><%= status_title %></h2>
+
+  <% if messages.any? %>
+    <div class="bg-admin-sidebar shadow-md rounded-lg overflow-hidden">
+      <table class="min-w-full leading-normal">
+        <thead>
+          <tr class="bg-gray-700 text-admin-text uppercase text-sm leading-normal">
+            <th class="py-3 px-6 text-left">Nome</th>
+            <th class="py-3 px-6 text-left">Conteúdo</th>
+            <th class="py-3 px-6 text-left">Data</th>
+            <th class="py-3 px-6 text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody class="text-admin-text text-sm">
+          <% messages.each do |message| %>
+            <tr class="border-b border-gray-600 hover:bg-gray-700">
+              <td class="py-3 px-6 text-left whitespace-nowrap"><%= message.user_name.presence || 'Anônimo' %></td>
+              <td class="py-3 px-6 text-left truncate max-w-xs"><%= message.content %></td>
+              <td class="py-3 px-6 text-left whitespace-nowrap"><%= l message.created_at, format: :short %></td>
+              <td class="py-3 px-6 text-center whitespace-nowrap">
+                <% if type == 'pending' %>
+                  <%= link_to 'Aprovar', approve_admin_message_path(message), data: { turbo_method: :patch }, class: 'bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-sm mr-2' %>
+                  <%= link_to 'Rejeitar', reject_admin_message_path(message), data: { turbo_method: :patch }, class: 'bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm' %>
+                <% elsif type == 'approved' %>
+                  <%= link_to 'Rejeitar', reject_admin_message_path(message), data: { turbo_method: :patch }, class: 'bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm' %>
+                <% elsif type == 'rejected' %>
+                  <%= link_to 'Aprovar', approve_admin_message_path(message), data: { turbo_method: :patch }, class: 'bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-sm' %>
+                <% end %>
+                <%= link_to 'Excluir', admin_message_path(message), data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' }, class: 'bg-gray-500 hover:bg-gray-600 text-white font-bold py-1 px-2 rounded text-sm ml-2' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="bg-admin-sidebar p-6 rounded-lg shadow-md text-center">
+      <p class="text-gray-400">Nenhuma mensagem <%= status_title.downcase %> no momento.</p>
+    </div>
+  <% end %>
+</div>

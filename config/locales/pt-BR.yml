@@ -1,0 +1,125 @@
+pt-BR:
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M:%S"
+      short: "%d de %b, %H:%M" # Ex: "01 de Jun, 10:30"
+      long: "%d de %B de %Y, %H:%M"
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d de %b"
+      long: "%d de %B de %Y"
+  devise:
+    sessions:
+      signed_in: "Login realizado com sucesso."
+      signed_out: "Logout realizado com sucesso."
+      already_signed_out: "Você já está desconectado(a)."
+    failure:
+      already_authenticated: "Você já está logado(a)."
+      unauthenticated: "Você precisa fazer login ou se registrar antes de continuar."
+      unconfirmed: "Você precisa confirmar sua conta antes de continuar."
+      locked: "Sua conta está bloqueada."
+      invalid: "E-mail ou senha inválidos."
+      invalid_token: "Token de autenticação inválido."
+      timeout: "Sua sessão expirou. Por favor, faça login novamente para continuar."
+      inactive: "Sua conta ainda não foi ativada."
+      last_attempt: "Você tem mais uma tentativa antes que sua conta seja bloqueada."
+    messages: # Mensagens de sucesso (notices)
+      updated: "Recurso atualizado com sucesso."
+      created: "Recurso criado com sucesso."
+      destroyed: "Recurso excluído com sucesso."
+      # Mensagens específicas que podem aparecer como "missing" após Devise actions
+      # (Você pode descomentar e ajustar se precisar)
+      # registrations:
+      #   signed_up: "Bem-vindo(a)! Você se cadastrou com sucesso."
+      #   updated: "Sua conta foi atualizada com sucesso."
+      #   destroyed: "Sua conta foi cancelada com sucesso."
+      # passwords:
+      #   updated: "Sua senha foi alterada com sucesso."
+      #   send_instructions: "Você receberá um e-mail com instruções sobre como redefinir sua senha em alguns minutos."
+      # confirmations:
+      #   confirmed: "Sua conta foi confirmada com sucesso."
+      #   send_instructions: "Você receberá um e-mail com instruções sobre como confirmar sua conta."
+      # unlocks:
+      #   unlocked: "Sua conta foi desbloqueada com sucesso."
+      #   send_instructions: "Você receberá um e-mail com instruções sobre como desbloquear sua conta."
+    passwords: # Seção de mensagens específicas para senhas no Devise
+      updated: "Sua senha foi alterada com sucesso. Você está logado(a)."
+      send_instructions: "Você receberá um e-mail com instruções sobre como redefinir sua senha em alguns minutos."
+      send_paranoid_instructions: "Se seu endereço de e-mail existir em nosso banco de dados, você receberá um link de recuperação de senha por e-mail em alguns minutos."
+    registrations: # Seção de mensagens específicas para registro no Devise
+      signed_up: "Bem-vindo(a)! Você se cadastrou com sucesso."
+      updated: "Sua conta foi atualizada com sucesso."
+      destroyed: "Sua conta foi cancelada com sucesso."
+    confirmations: # Seção de mensagens específicas para confirmações no Devise
+      confirmed: "Sua conta foi confirmada com sucesso."
+      send_instructions: "Você receberá um e-mail com instruções sobre como confirmar sua conta em alguns minutos."
+      send_paranoid_instructions: "Se sua conta existir, você receberá um e-mail com instruções sobre como confirmar sua conta em alguns minutos."
+    unlocks: # Seção de mensagens específicas para desbloqueio no Devise
+      unlocked: "Sua conta foi desbloqueada com sucesso. Por favor, faça login para continuar."
+      send_instructions: "Você receberá um e-mail com instruções sobre como desbloquear sua conta em alguns minutos."
+      send_paranoid_instructions: "Se sua conta existir, você receberá um e-mail com instruções sobre como desbloquear sua conta em alguns minutos."
+    omniauth_callbacks: # Seção de mensagens específicas para autenticação via OAuth
+      success: "Autenticado(a) com sucesso de conta %{kind}."
+      failure: "Não foi possível autenticá-lo(a) de %{kind} porque \"%{reason}\"."
+
+  errors: # <--- BLOCO DE MENSAGENS DE ERRO DE VALIDAÇÃO (NÃO Devise específico)
+    messages:
+      not_saved: "%{resource} não pôde ser salvo(a) devido a %{count} erros:"
+      confirmation: "não confere com a %{attribute}"
+      accepted: "precisa ser aceito(a)"
+      blank: "não pode ficar em branco"
+      present: "deve ficar em branco"
+      empty: "não pode ficar vazio(a)"
+      equal_to: "deve ser igual a %{count}"
+      even: "deve ser um número par"
+      exclusion: "é um valor reservado"
+      greater_than: "deve ser maior que %{count}"
+      greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+      inclusion: "não está incluído(a) na lista"
+      invalid: "é inválido(a)"
+      less_than: "deve ser menor que %{count}"
+      less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+      not_a_number: "não é um número"
+      not_an_integer: "não é um número inteiro"
+      odd: "deve ser um número ímpar"
+      taken: "já está em uso"
+      too_long: "é muito longo(a) (máximo: %{count} caracteres)"
+      too_short: "é muito curto(a) (mínimo: %{count} caracteres)"
+      wrong_length: "não possui o tamanho correto (deve ter %{count} caracteres)"
+      other_than: "deve ser diferente de %{count}"
+      file_content_type_invalid: "tem um formato inválido" # Para validação de foto/arquivo (ex: AdminUser, Sorteio)
+      file_size_too_large: "é muito grande" # Para validação de tamanho de arquivo (ex: AdminUser, Sorteio)
+
+  # Adicione outras traduções globais para ActiveRecord se precisar
+  # activerecord:
+  #   errors:
+  #     messages:
+  #       record_invalid: "Validação falhou: %{errors}"
+  #       restrict_dependent_destroy:
+  #         has_one: "Não é possível excluir o registro porque existe um(a) %{record} dependente"
+  #         has_many: "Não é possível excluir o registro porque existem %{record} dependentes"
+  #   attributes:
+  #     admin_user:
+  #       password_confirmation: "Confirmação de senha"
+  #       password: "Senha"
+  #       email: "E-mail"
+  #       name: "Nome"
+  #     message:
+  #       content: "Conteúdo"
+  #       user_name: "Nome de usuário"
+  #     partner:
+  #       name: "Nome"
+  #       bio: "Biografia"
+  #       social_link: "Link social"
+  #     sorteio:
+  #       titulo: "Título"
+  #       descricao: "Descrição"
+  #       link_sorteio: "Link do sorteio"
+  #       data_sorteio: "Data do sorteio"
+  #       ativo: "Ativo"
+  #     vote_link:
+  #       title: "Título"
+  #       url: "URL"
+  #       description: "Descrição"
+  #       is_active: "Ativo"

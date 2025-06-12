@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  titulo: MyString
+  descricao: MyText
+  link_sorteio: MyString
+  data_sorteio: 2025-06-09 22:32:56
+  ativo: false
+
+two:
+  titulo: MyString
+  descricao: MyText
+  link_sorteio: MyString
+  data_sorteio: 2025-06-09 22:32:56
+  ativo: false

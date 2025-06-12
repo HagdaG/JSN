@@ -1,0 +1,44 @@
+<%# app/views/messages/index.html.erb %>
+
+<div class="container mx-auto mt-10 p-6 text-white bg-purple-medium-dark rounded-lg shadow-xl">
+  <h1 class="text-5xl font-extrabold mb-8 text-purple-extra-light animate-fade-in text-center" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+    Todos Somos JSN: Nossas Histórias K-pop
+  </h1>
+  <p class="text-lg mb-8 leading-relaxed text-center" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+    Aqui, o ARMY se une para compartilhar as trajetórias que nos trouxeram ao mundo do K-pop e nos conectaram ao JSN. Cada história é um elo que nos fortalece!
+  </p>
+
+  <hr class="border-t-2 border-purple-light my-8">
+
+  <% if @approved_messages.any? %> <%# CORRIGIDO: Agora usa @approved_messages %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% @approved_messages.each do |message| %>
+        <div class="bg-purple-medium p-6 rounded-lg shadow-md border border-purple-light transform hover:scale-105 transition-transform duration-300">
+          <p class="text-md leading-relaxed mb-4 italic" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">"<%= message.content %>"</p>
+          <% if message.user_name.present? %>
+            <p class="font-semibold text-right text-purple-extra-light" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">- <%= message.user_name %></p>
+          <% end %>
+          <div class="text-right text-sm text-gray-300 mt-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+            <small><%= l(message.created_at, format: :short) %></small>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-center text-xl mt-10" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Nenhuma história aprovada ainda. Compartilhe a sua e seja o primeiro!</p>
+  <% end %>
+
+  <div class="text-center mt-12">
+    <%= link_to 'Voltar para a Página Inicial', root_path, class: 'bg-pink-neon text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transition duration-300 mr-4 hover:bg-gold-accent hover:text-black active:bg-gold-accent active:text-black' %>
+  </div>
+</div>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+</style>

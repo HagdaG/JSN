@@ -1,0 +1,254 @@
+<div class="py-12">
+  <h1 class="text-5xl font-bold text-purple-300 text-center mb-10" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Sobre o Projeto JSN</h1>
+  <%# Adicionando a logo na página JSN, confirme que o nome do arquivo é 'logo.jpg' e está em app/assets/images/ %>
+  <div class="flex justify-center mb-8">
+    <img src="<%= asset_path '/logo.jpg' %>" alt="JSN Logo" class="h-24 md:h-32 rounded-full shadow-lg border-4 border-gold-accent animate-spin-slow">
+  </div>
+
+  <%# --- SEÇÃO: LINHA DO TEMPO VISUAL (História de como nasceu o JSN) --- %>
+  <section class="mb-12 bg-purple-medium p-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-8 text-center" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Nossa História: Como o JSN Nasceu</h2>
+
+    <div class="relative wrap overflow-hidden p-10 h-full">
+      <div class="border-2-2 absolute h-full border border-purple-light" style="left: 50%; border-width: 2px;"></div>
+      <%# Primeiro Ponto da Linha do Tempo %>
+      <div class="mb-8 flex justify-between items-center w-full right-timeline">
+        <div class="order-1 w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-pink-neon shadow-xl w-8 h-8 rounded-full">
+          <h1 class="mx-auto font-semibold text-lg text-white">💜</h1>
+        </div>
+        <div class="order-1 bg-purple-dark rounded-lg shadow-xl w-5/12 px-6 py-4">
+          <h3 class="mb-3 font-bold text-purple-extra-light text-xl" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">A Frustração e a Esperança (2019)</h3>
+          <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+            O Juntos e Shallow Now nasceu da união entre a frustração de ver tantas ARMYs sonhando em ir a um show do BTS e, por questões financeiras, não conseguirem sequer tentar, e a esperança de que, unindo forças, seria possível criar um caminho mais justo e acessível.
+          </p>
+        </div>
+      </div>
+
+      <%# Segundo Ponto da Linha do Tempo %>
+      <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+        <div class="order-1 w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-pink-neon shadow-xl w-8 h-8 rounded-full">
+          <h1 class="mx-auto font-semibold text-lg text-white">🎤</h1>
+        </div>
+        <div class="order-1 bg-purple-dark rounded-lg shadow-xl w-5/12 px-6 py-4">
+          <h3 class="mb-3 font-bold text-purple-extra-light text-xl" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">O Meme que Virou Nome</h3>
+          <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+            O nome do projeto é uma homenagem direta ao meme “Juntos e Shallow Now” popularizado por Paula Fernandes, que se tornou inesquecível para o B-ARMY quando o próprio Jungkook o falou em um show em São Paulo em 2019. Um momento simbólico de carinho e conexão.
+          </p>
+        </div>
+      </div>
+
+      <%# Terceiro Ponto da Linha do Tempo %>
+      <div class="mb-8 flex justify-between items-center w-full right-timeline">
+        <div class="order-1 w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-pink-neon shadow-xl w-8 h-8 rounded-full">
+          <h1 class="mx-auto font-semibold text-lg text-white">🤝</h1>
+        </div>
+        <div class="order-1 bg-purple-dark rounded-lg shadow-xl w-5/12 px-6 py-4">
+          <h3 class="mb-3 font-bold text-purple-extra-light text-xl" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">A Proposta da União</h3>
+          <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+            A ideia surgiu de forma orgânica entre as membros fundadoras Vitória Luiza Almeida de Azevedo e Vitória Oliveira, que viram como o amor do fandom podia ser canalizado para ações concretas de impacto real na vida das pessoas.
+          </p>
+        </div>
+      </div>
+
+      <%# Quarto Ponto da Linha do Tempo %>
+      <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+        <div class="order-1 w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-pink-neon shadow-xl w-8 h-8 rounded-full">
+          <h1 class="mx-auto font-semibold text-lg text-white">✨</h1>
+        </div>
+        <div class="order-1 bg-purple-dark rounded-lg shadow-xl w-5/12 px-6 py-4">
+          <h3 class="mb-3 font-bold text-purple-extra-light text-xl" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Consolidação do Projeto</h3>
+          <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+            Desde o início, o JSN foi pensado para ser coletivo, transparente, acessível e humano. Hoje, o projeto se consolida como uma iniciativa social de fãs para fãs, comprometido com inclusão, acolhimento e realização de sonhos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%# --- SEÇÃO: NOSSOS VALORES --- %>
+  <section class="mb-12 bg-purple-medium p-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-8 text-center" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Quem Somos e Nossos Valores</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+      <div class="flex flex-col items-center p-4 bg-purple-dark rounded-lg shadow-md border border-purple-light">
+        <i class="fas fa-hand-holding-heart text-pink-neon text-4xl mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i>
+        <h3 class="text-xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Empatia</h3>
+        <p class="text-sm text-gray-300" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Conectamos corações, entendendo as dificuldades de cada ARMY.</p>
+      </div>
+      <div class="flex flex-col items-center p-4 bg-purple-dark rounded-lg shadow-md border border-purple-light">
+        <i class="fas fa-users text-pink-neon text-4xl mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i>
+        <h3 class="text-xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Coletividade</h3>
+        <p class="text-sm text-gray-300" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Acreditamos no poder da união para transformar sonhos em realidade.</p>
+      </div>
+      <div class="flex flex-col items-center p-4 bg-purple-dark rounded-lg shadow-md border border-purple-light">
+        <i class="fas fa-heart text-pink-neon text-4xl mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i>
+        <h3 class="text-xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Amor Compartilhado</h3>
+        <p class="text-sm text-gray-300" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Movemo-nos pelo amor ao BTS e ao fandom.</p>
+      </div>
+      <div class="flex flex-col items-center p-4 bg-purple-dark rounded-lg shadow-md border border-purple-light">
+        <i class="fas fa-lightbulb text-pink-neon text-4xl mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i>
+        <h3 class="text-xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Oportunidade</h3>
+        <p class="text-sm text-gray-300" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Criamos caminhos para que mais ARMYs vivam o sonho de ver o BTS.</p>
+      </div>
+      <div class="flex flex-col items-center p-4 bg-purple-dark rounded-lg shadow-md border border-purple-light">
+        <i class="fas fa-handshake text-pink-neon text-4xl mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i>
+        <h3 class="text-xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Transparência</h3>
+        <p class="text-sm text-gray-300" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Atuamos com clareza em todas as nossas ações e contas.</p>
+      </div>
+      <div class="flex flex-col items-center p-4 bg-purple-dark rounded-lg shadow-md border border-purple-light">
+        <i class="fas fa-smile text-pink-neon text-4xl mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i>
+        <h3 class="text-xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Humanidade</h3>
+        <p class="text-sm text-gray-300" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Cada ação é feita com carinho e respeito pela vida de cada fã.</p>
+      </div>
+    </div>
+  </section>
+
+  <%# --- SEÇÃO: NOSSO OBJETIVO CENTRAL --- %>
+  <section class="mb-12 bg-purple-medium p-8 rounded-lg shadow-xl text-center">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Nosso Objetivo Central</h2>
+    <p class="text-xl leading-relaxed font-semibold text-gold-accent mb-6" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      Levar o maior número possível de B-ARMYs de baixa renda ao próximo show do BTS no Brasil — com tudo pago.
+    </p>
+    <p class="text-lg leading-relaxed text-gray-300 mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      Esse é o nosso maior propósito. Direto, claro, ambicioso — e absolutamente possível com o apoio da comunidade ARMY. O Juntos e Shallow Now nasceu para tornar real o que, para muitas ARMYs, parece apenas um sonho distante: ver o BTS ao vivo.
+    </p>
+    <p class="text-lg leading-relaxed text-gray-300 mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      Sabemos que os custos para isso são altos — ingressos, transporte, hospedagem, alimentação e estrutura. Por isso, nossa meta não é apenas levar fãs ao show, mas proporcionar uma experiência completa, digna e segura. Quando dizemos “com tudo pago”, é exatamente isso: cuidaremos de cada detalhe necessário para que essas ARMYs vivam esse momento com tranquilidade e felicidade.
+    </p>
+    <p class="text-lg leading-relaxed text-gray-300 mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      As selecionadas para viver essa experiência serão acompanhadas desde o início até o fim da jornada, com apoio total. Para aumentar suas chances de participar, as interessadas devem seguir as orientações que divulgamos em nossas redes, respeitar os prazos e demonstrar real interesse e comprometimento com a proposta do projeto.
+    </p>
+    <p class="text-lg leading-relaxed text-gray-300" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      Nosso compromisso é com a transparência. Os critérios de seleção, as regras de participação e todos os detalhes sobre as ações serão sempre comunicados de forma acessível, clara e justa. Mais do que levar ARMYs ao show, queremos levar sonhos à realidade.
+    </p>
+  </section>
+
+  <%# --- SEÇÃO: COMO REALIZAMOS ESSE SONHO (Cards) --- %>
+  <section class="mb-12 bg-purple-medium p-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-8 text-center" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Como Realizamos Esse Sonho</h2>
+    <p class="text-lg leading-relaxed text-gray-300 mb-6 text-center" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      Unimos esforços, estratégias, amor e ação para tornar o sonho de ver o BTS ao vivo uma realidade para mais ARMYs. Nossas principais frentes de atuação são:
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <%# Card: Rifas Mensais %>
+      <div class="bg-purple-dark p-6 rounded-lg shadow-md border border-purple-light flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300">
+        <i class="fas fa-ticket-alt text-pink-neon text-4xl mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i>
+        <h3 class="text-xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Rifas Mensais</h3>
+        <p class="text-sm text-gray-300 mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+          Com produtos temáticos K-pop (doações de parceiros e ARMYs), cada número comprado contribui diretamente.
+        </p>
+        <%= link_to 'Saiba Mais sobre Rifas', jsn_raffles_and_partnerships_path, class: 'bg-pink-neon hover:bg-purple-light text-white font-bold py-2 px-4 rounded-full text-sm transition duration-300 mt-auto',
+                    style: "text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;" %>
+      </div>
+
+      <%# Card: Parcerias Estratégicas %>
+      <div class="bg-purple-dark p-6 rounded-lg shadow-md border border-purple-light flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300">
+        <i class="fas fa-handshake text-pink-neon text-4xl mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i>
+        <h3 class="text-xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Parcerias Estratégicas</h3>
+        <p class="text-sm text-gray-300 mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+          Com comércios, influenciadores e fanbases, impulsionamos nosso alcance e ações.
+        </p>
+        <%= link_to 'Conheça Nossas Parcerias', jsn_team_path, class: 'bg-blue-light hover:bg-purple-light text-white font-bold py-2 px-4 rounded-full text-sm transition duration-300 mt-auto',
+                    style: "text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;" %>
+      </div>
+
+      <%# Card: Doações Diretas - MODIFICADO PARA EXIBIR PIX %>
+      <div class="bg-purple-dark p-6 rounded-lg shadow-md border border-purple-light flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300">
+        <i class="fas fa-donate text-pink-neon text-4xl mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i>
+        <h3 class="text-xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Doações Diretas</h3>
+        <p class="text-sm text-gray-300 mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+          Qualquer pessoa pode contribuir com QUALQUER VALOR para ajudar nos custos das ARMYs contempladas.
+        </p>
+        <%# Botão que vai mostrar a chave PIX %>
+        <button id="show-pix-button" class="bg-gold-accent hover:bg-purple-light text-white font-bold py-2 px-4 rounded-full text-sm transition duration-300 mt-auto" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Como Doar</button>
+      </div>
+
+      <%# Card: Venda de Produtos na Loja %>
+      <div class="bg-purple-dark p-6 rounded-lg shadow-md border border-purple-light flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300">
+        <i class="fas fa-store text-pink-neon text-4xl mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i>
+        <h3 class="text-xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Loja JSN</h3>
+        <p class="text-sm text-gray-300 mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+          Parte do lucro da venda de produtos é revertido em investimentos diretos no projeto.
+        </p>
+        <a href="https://www.instagram.com/hallyu.jsn?igsh=MWVxaDRqbjI1empmeg==" target="_blank" rel="noopener noreferrer" class="bg-purple-light hover:bg-pink-neon text-white font-bold py-2 px-4 rounded-full text-sm transition duration-300 mt-auto" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Visite a Loja</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="text-center mt-12 mb-12">
+    <h2 class="text-3xl font-bold text-gold-accent mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      "Quando um sonho é dividido por muitos, ele deixa de ser só sonho — vira missão."
+    </h2>
+    <p class="text-lg leading-relaxed text-gray-300" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      — Uma frase que nos move.
+    </p>
+  </div>
+
+</div>
+
+<div id="pix-info" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+  <div class="bg-purple-dark p-8 rounded-lg shadow-2xl text-center border-4 border-pink-neon max-w-lg w-full relative">
+    <button id="close-pix-button-top" class="absolute top-4 right-4 text-white hover:text-gray-300 text-2xl leading-none">&times;</button>
+    <p class="text-white text-2xl font-semibold mb-6" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">💜 Que bom que você está doando e apoiando o Projeto JSN! Sua generosidade faz a diferença! 💜</p>
+    <p class="text-gold-accent text-3xl font-bold break-all mb-6" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      Chave PIX (e-mail): <span id="pix-key-email">projetojuntoseshallownownext@gmail.com</span>
+    </p>
+    <button id="copy-pix-button" class="mt-4 px-8 py-3 bg-pink-neon hover:bg-purple-light text-white font-bold rounded-full text-lg shadow-md transition duration-300" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Copiar Chave PIX</button>
+    <button id="close-pix-button-bottom" class="mt-6 px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white font-bold rounded-full transition duration-300 ml-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Entendi!</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const showButton = document.getElementById('show-pix-button');
+    const closeButtonTop = document.getElementById('close-pix-button-top');
+    const closeButtonBottom = document.getElementById('close-pix-button-bottom');
+    const pixInfo = document.getElementById('pix-info');
+    const copyPixButton = document.getElementById('copy-pix-button');
+    const pixKeyEmail = document.getElementById('pix-key-email');
+
+    // Função para mostrar a seção PIX
+    if (showButton && pixInfo) {
+      showButton.addEventListener('click', function() {
+        pixInfo.classList.remove('hidden');
+        // Você pode adicionar uma animação aqui se desejar, como pixInfo.classList.add('animate-fade-in');
+      });
+    }
+
+    // Função para fechar a seção PIX (botão "X" no topo)
+    if (closeButtonTop && pixInfo) {
+      closeButtonTop.addEventListener('click', function() {
+        pixInfo.classList.add('hidden');
+      });
+    }
+
+    // Função para fechar a seção PIX (botão "Entendi!")
+    if (closeButtonBottom && pixInfo) {
+      closeButtonBottom.addEventListener('click', function() {
+        pixInfo.classList.add('hidden');
+      });
+    }
+
+    // Função para copiar a chave PIX
+    if (copyPixButton && pixKeyEmail) {
+      copyPixButton.addEventListener('click', function() {
+        const textToCopy = pixKeyEmail.textContent || pixKeyEmail.innerText; // Pega o texto da chave
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          alert('Chave PIX copiada para a área de transferência!');
+          // Opcional: mudar o texto do botão para "Copiado!" por alguns segundos
+          copyPixButton.textContent = 'Copiado!';
+          setTimeout(() => {
+            copyPixButton.textContent = 'Copiar Chave PIX';
+          }, 2000);
+        }).catch(err => {
+          console.error('Erro ao copiar a chave PIX: ', err);
+          alert('Não foi possível copiar. Por favor, copie manualmente: ' + textToCopy);
+        });
+      });
+    }
+  });
+</script>

@@ -1,0 +1,241 @@
+/* --- Estilos Customizados para a Página de Login do Administrador --- */
+
+/* Contêiner da página inteira para centralização */
+.login-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Garante que o contêiner ocupa a altura total da viewport */
+  background-color: #f0f2f5; /* Fundo cinza claro para a página */
+  padding: 20px; /* Padding geral para telas menores */
+  box-sizing: border-box; /* Garante que padding não adicione à largura */
+}
+
+/* O contêiner roxo principal do formulário */
+.login-container {
+  background-color: var(--purple-medium); /* Roxo médio para o fundo */
+  border: 1px solid var(--purple-dark); /* Borda roxa escura */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada */
+  padding: 40px;
+  width: 100%;
+  max-width: 400px; /* Largura máxima para o contêiner */
+  color: white; /* Texto branco dentro do contêiner */
+  text-align: center;
+}
+
+/* Estilo para a mensagem de boas-vindas no topo do contêiner */
+.welcome-message h2 {
+  font-size: 1.8em;
+  margin-bottom: 30px;
+  color: var(--gold-accent); /* Dourado para o título de boas-vindas */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Leve sombra para o título */
+}
+
+/* Estilo geral para o formulário de login */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espaçamento entre os grupos de input */
+}
+
+/* Grupo de input (ícone + campo) */
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Ícones dentro dos campos de input */
+.input-group .icon {
+  position: absolute;
+  left: 15px; /* Posição do ícone à esquerda */
+  color: var(--purple-dark); /* Cor roxa escura para os ícones */
+  font-size: 1.1em;
+  z-index: 2; /* Garante que o ícone fique acima do input */
+}
+
+/* Campos de Input (estilo comum para e-mail e senha) */
+.input-field {
+  width: 100%;
+  padding: 12px 15px 12px 50px; /* Padding para o ícone e texto */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white; /* Fundo branco para os inputs */
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+
+.input-field:focus {
+  border-color: var(--gold-accent); /* Borda dourada ao focar */
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.4); /* Sombra dourada ao focar */
+}
+
+/* Estilo específico para o texto digitado no campo de E-mail */
+.input-field-email {
+  color: #333; /* Texto preto/cinza escuro no campo de e-mail */
+}
+
+/* Estilo específico para o texto digitado no campo de Senha (ROXO!) */
+.input-field-password {
+  color: var(--purple-dark); /* Texto roxo escuro no campo de senha */
+  padding-right: 50px; /* Mais padding para o olhinho */
+}
+
+/* Estilo para o ícone do olhinho */
+.password-toggle {
+  position: absolute;
+  right: 15px; /* Posição do olhinho à direita */
+  cursor: pointer;
+  color: #888; /* Cor cinza para o olhinho */
+  font-size: 1.1em;
+  z-index: 3; /* Garante que o olhinho esteja acima do input e do ícone de cadeado */
+}
+
+.password-toggle:hover {
+  color: var(--gold-accent); /* Cor dourada ao passar o mouse no olhinho */
+}
+
+/* Estilo do botão de login */
+.login-button {
+  background-color: var(--gold-accent); /* Dourado para o botão */
+  color: var(--purple-dark); /* Texto roxo escuro no botão */
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 10px; /* Espaçamento acima do botão */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+}
+
+.login-button:hover {
+  background-color: #e0b600; /* Dourado um pouco mais escuro ao passar o mouse */
+  color: white; /* Texto branco no botão ao passar o mouse */
+}
+
+/* Estilo para o checkbox "Lembrar de mim" (se visível) */
+.remember-me-checkbox label {
+  color: white;
+  font-size: 0.9em;
+}
+
+/* Estilo para a barra de rolagem (do seu código existente) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.5);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--purple-light);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--purple-extra-light);
+}
+
+/* --- FIM dos Estilos Customizados para a Página de Login --- */
+
+/* --- Estilos Específicos para a Tela de Login do Admin (Devise) --- */
+
+// Container principal da página de login (para centralizar o box de login)
+.login-page-container {
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh; // Ocupa a altura total da viewport
+background-color: var(--admin-bg); // Usa a cor de fundo do admin
+// Opcional: Se você quiser uma imagem de fundo diferente para a tela de login
+// background-image: url('/path/to/your/admin_login_bg.jpg');
+// background-size: cover;
+// background-position: center;
+}
+
+// O container roxo do formulário de login
+.login-container {
+background-color: var(--purple-medium); /* Roxo médio que você definiu */
+padding: 40px;
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra mais visível */
+color: white; /* Cor do texto dentro do container (afeta placeholders inicialmente) */
+text-align: center;
+width: 400px; /* Largura fixa */
+max-width: 90%; /* Responsividade para telas menores */
+animation: fadeIn 1s ease-out forwards; /* Animação de fade-in */
+}
+
+.welcome-message h2 {
+font-size: 2.2em; /* Tamanho maior para o título */
+margin-bottom: 30px;
+color: var(--purple-extra-light); /* Uma cor de destaque para o título */
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para o título */
+}
+
+.login-form {
+display: flex;
+flex-direction: column;
+gap: 20px; /* Espaçamento entre os grupos de input e botão */
+}
+
+.input-group {
+display: flex;
+align-items: center;
+background-color: white; /* Fundo branco para os campos de input */
+border-radius: 8px; /* Cantos levemente mais arredondados */
+padding: 10px 15px; /* Mais padding para os campos */
+border: 1px solid var(--purple-light); /* Borda sutil */
+}
+
+.input-group .icon {
+margin-right: 12px;
+font-size: 1.4em; /* Ícones maiores */
+color: var(--purple-medium); /* Cor dos ícones, combinando com o tema */
+}
+
+.input-field {
+flex-grow: 1;
+border: none;
+outline: none; /* Remove a borda de foco padrão */
+padding: 5px 0;
+font-size: 1.1em; /* Texto maior nos campos */
+color: var(--gray-input-text); /* Cor de texto cinza escuro para placeholders */
+background-color: transparent; /* Garante que o input não tenha seu próprio fundo */
+color: black !important; /* Força a cor do texto digitado para preto */
+}
+
+.input-field::placeholder {
+color: #a0a0a0; /* Placeholder mais suave */
+}
+
+.login-button {
+background-color: var(--pink-neon); /* Cor rosa neon para o botão */
+color: white;
+padding: 14px 25px;
+border: none;
+border-radius: 8px; /* Cantos arredondados */
+font-size: 1.2em;
+font-weight: bold;
+cursor: pointer;
+transition: background-color 0.3s ease, transform 0.2s ease;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra para o botão */
+text-transform: uppercase; /* Texto em maiúsculas */
+letter-spacing: 1px; /* Espaçamento entre letras */
+}
+
+.login-button:hover {
+background-color: var(--pink-neon-dark, #CC00CC); /* Usa pink-neon-dark se definido, senão um fallback */
+transform: translateY(-2px); /* Pequeno efeito de levantamento */
+box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+// Animação (reaproveitando a que você já tem)
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(-20px); }
+to { opacity: 1; transform: translateY(0); }
+}

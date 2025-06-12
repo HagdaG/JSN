@@ -1,18 +1,78 @@
-<h1>Sorteios Ativos</h1>
-<p>Aqui você encontra todos os sorteios ativos do projeto JSN. Participe e ajude a apoiar os idols!</p>
+<div class="text-white py-8">
+  <h1 class="text-5xl font-extrabold mb-8 text-purple-extra-light text-center" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Rifas, Sorteios e Parcerias JSN</h1>
 
-<!-- Exemplo de sorteio ativo -->
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="https://via.placeholder.com/150" class="img-fluid rounded-start" alt="Imagem do prêmio">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Rifa do Álbum Novo do BTS</h5>
-        <p class="card-text">Participe para concorrer a um álbum especial!</p>
-        <a href="#" class="btn btn-primary">Comprar Rifa</a>
+  <div class="bg-purple-medium p-8 rounded-lg shadow-xl border-2 border-purple-light mb-12 text-center">
+    <p class="text-lg leading-relaxed mb-6" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      Ao participar de nossas rifas e sorteios, você não só concorre a prêmios incríveis e exclusivos do BTS e K-pop, mas também ajuda diretamente o projeto JSN a levar mais ARMYs para o show dos meninos! Sua paixão move a nossa missão.
+    </p>
+  </div>
+
+  <%# --- SEÇÃO UNIFICADA: NOSSAS RIFAS E SORTEIOS ATUAIS --- %>
+  <section class="bg-purple-dark p-8 rounded-lg shadow-xl border-2 border-pink-neon text-center mb-12">
+    <i class="fas fa-ticket-alt text-gold-accent text-5xl mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i> <%# Ícone principal para a seção %>
+    <i class="fas fa-trophy text-pink-neon text-5xl mb-4 ml-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i> <%# Segundo ícone para complementar %>
+    <h2 class="text-3xl font-bold mb-6 text-gold-accent" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Nossas Rifas e Sorteios Atuais</h2>
+    <p class="text-md leading-relaxed mb-8" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      Participe das nossas promoções e tenha a chance de ganhar prêmios incríveis! Fique de olho nas regras de cada sorteio.
+    </p>
+
+    <% if @active_sorteios.any? %>
+      <%# Grid flexível para os cards de sorteio/rifa, permitindo mais de um por linha %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+        <% @active_sorteios.each do |sorteio| %>
+          <div class="bg-purple-medium p-6 rounded-lg shadow-md border border-purple-light flex flex-col justify-between items-center text-center">
+            <h3 class="text-2xl font-semibold text-purple-extra-light mb-3 text-shadow-md" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><%= sorteio.titulo %></h3>
+
+            <%# --- NOVO: EXIBIR A FOTO DO PRÊMIO --- %>
+            <% if sorteio.photo.attached? %>
+              <%= image_tag sorteio.photo, class: "w-full h-48 object-cover rounded-lg mb-4 border-2 border-gold-accent" %>
+            <% end %>
+            <%# --- FIM NOVO --- %>
+
+            <p class="text-base leading-relaxed text-gray-200 mb-4 flex-grow text-shadow-sm" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><%= sorteio.descricao %></p>
+
+            <% if sorteio.data_sorteio.present? %>
+              <p class="text-md text-pink-neon font-semibold mb-4 text-shadow-sm" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+                Data do Sorteio: <%= sorteio.data_sorteio.strftime("%d/%m/%Y %H:%M") %>
+              </p>
+            <% end %>
+
+            <% if sorteio.link_sorteio.present? %>
+              <%= link_to 'Participar Agora!', sorteio.link_sorteio, target: '_blank', rel: 'noopener noreferrer',
+                          class: 'inline-flex items-center justify-center px-6 py-3 border-2 border-pink-neon text-pink-neon bg-white font-bold rounded-full text-lg shadow-md transition duration-300 mt-auto hover:bg-gold-accent hover:text-pink-neon active:bg-gold-accent active:text-pink-neon',
+                          style: "text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;" %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
-    </div>
+    <% else %>
+      <p class="text-xl leading-relaxed text-purple-extra-light text-center mt-8" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+        No momento, não há rifas ou sorteios ativos. Fique conectado(a) para não perder os próximos!
+      </p>
+    <% end %>
+  </section>
+
+  <%# --- SEÇÃO DE PARCERIAS (MANTIDA) --- %>
+  <div class="bg-purple-dark p-8 rounded-lg shadow-xl border-2 border-purple-light text-center mt-12">
+    <i class="fas fa-handshake text-gold-accent text-5xl mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"></i>
+    <h2 class="text-4xl font-bold mb-6 text-purple-extra-light" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Parcerias e Colaborações</h2>
+    <p class="text-lg leading-relaxed mb-6" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      O JSN está aberta a parcerias com lojas, artistas, influenciadores e outros projetos que compartilham do amor pelo K-pop e BTS.
+      Se você tem uma ideia de colaboração ou quer apoiar nossos sorteios com produtos, entre em contato!
+    </p>
+    <%# --- CORRIGIDO: Usando tag <a> HTML pura com mailto e data-turbo="false" --- %>
+    <a href="mailto:projetojuntoseshallownownext@gmail.com"
+       class="bg-pink-neon hover:bg-purple-light text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transition duration-300"
+       style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"
+       data-turbo="false"> <%# <--- ADICIONADO data-turbo="false" AQUI! %>
+      <i class="fas fa-envelope mr-2"></i> Proponha uma Parceria
+    </a>
   </div>
 </div>
+
+<style>
+  /* Adicione as sombras de texto que combinam com seu tema */
+  .text-shadow-lg { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9); }
+  .text-shadow-md { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); }
+  .text-shadow-sm { text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
+</style>

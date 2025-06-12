@@ -1,3 +1,5 @@
+# Gemfile
+
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -32,10 +34,25 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2" # <-- DESCOMENTADO PARA MANIPULAÇÃO DE IMAGENS
+
+# Adicionado para validações do Active Storage
+gem "active_storage_validations" # <-- ADICIONADO PARA VALIDAÇÕES DE FOTO/ARQUIVO
+
+# Adicionado para gerenciar o JavaScript com bundlers como Esbuild
+gem "jsbundling-rails"
+
+# --- NOVO: Gem para autenticação de usuários (Devise) ---
+gem "devise"
+# --- FIM NOVO ---
+
+# --- NOVO: Gems para gráficos na dashboard (Chartkick e Groupdate) ---
+gem "chartkick"
+gem "groupdate"
+# --- FIM NOVO ---
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug_gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
@@ -55,3 +72,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "cssbundling-rails", "~> 1.4"

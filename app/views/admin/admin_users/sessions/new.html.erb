@@ -1,0 +1,103 @@
+<%# app/views/admin_users/sessions/new.html.erb - CÓDIGO OTIMIZADO E COMPLETO %>
+
+<%# Este div externo "container" é para centralizar e dar margem à área de login %>
+<div class="container mx-auto mt-10 p-6 text-gray-800">
+  <%# Título de boas-vindas ao painel administrativo %>
+  <h1 class="text-4xl font-extrabold mb-8 text-center text-admin-accent" style="text-shadow: 0 0 8px rgba(255, 0, 255, 0.8), 0 0 15px rgba(255, 0, 255, 0.6), 0 0 20px rgba(255, 0, 255, 0.4);">
+    Bem-vindo(a) ao Painel Administrativo JSN
+  </h1>
+
+  <%# Contêiner roxo principal para o formulário de login. Inclui padding, bordas arredondadas e sombra. %>
+  <div class="max-w-md mx-auto p-8 rounded-lg shadow-md text-white bg-purple-medium border border-purple-dark">
+    <h2 class="text-2xl font-bold mb-6 text-center">Login de Admin</h2>
+
+    <%# Formulário de login do Devise %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+      <%# Campo de E-mail %>
+      <div class="field">
+        <%= f.label :email, class: "block text-white text-sm font-bold mb-2" %>
+        <div class="relative">
+          <%# Input de E-mail: Fundo branco para legibilidade, texto digitado em cinza escuro %>
+          <%= f.email_field :email,
+              autofocus: true,
+              autocomplete: "email",
+              class: "shadow appearance-none border rounded w-full py-2 pl-10 pr-3 leading-tight focus:outline-none focus:shadow-outline bg-white text-gray-900 focus:bg-white focus:text-gray-900" %>
+          <%# Ícone de usuário (Font Awesome): Cor cinza para se destacar no fundo branco do input %>
+          <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+            <i class="fas fa-user"></i>
+          </span>
+        </div>
+      </div>
+
+      <%# Campo de Senha %>
+      <div class="field">
+        <%= f.label :password, class: "block text-white text-sm font-bold mb-2" %>
+        <div class="relative">
+          <%# Input de Senha: Fundo branco, texto digitado em roxo escuro (conforme solicitado) %>
+          <%# 'id="password-field"' é usado pelo JavaScript para encontrar o input %>
+          <%# 'pr-10' garante espaço para o ícone do olhinho %>
+          <%= f.password_field :password,
+              autocomplete: "current-password",
+              id: "password-field",
+              class: "shadow appearance-none border rounded w-full py-2 pl-10 pr-10 leading-tight focus:outline-none focus:shadow-outline bg-white text-purple-dark focus:bg-white focus:text-purple-dark" %>
+          <%# Ícone de cadeado (Font Awesome): Cor cinza para se destacar no fundo branco do input %>
+          <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-600">
+            <i class="fas fa-lock"></i>
+          </span>
+          <%# Ícone do olhinho (Font Awesome): Cor cinza, com função JS para alternar visibilidade %>
+          <%# 'onclick="togglePasswordVisibility(this)"' chama a função JS embutida %>
+          <span class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-600" onclick="togglePasswordVisibility(this)">
+            <i class="fas fa-eye-slash" id="toggle-password-icon"></i>
+          </span>
+        </div>
+      </div>
+
+      <%# Opção "Lembrar de mim" (se configurado no Devise) %>
+      <% if devise_mapping.rememberable? %>
+        <div class="field flex items-center">
+          <%= f.check_box :remember_me, class: "form-checkbox h-4 w-4 text-purple-light transition duration-150 ease-in-out" %>
+          <%= f.label :remember_me, class: "ml-2 block text-white text-sm" %>
+        </div>
+      <% end %>
+
+      <%# Botão de Login %>
+      <div class="actions">
+        <%= f.submit "Entrar", class: "w-full bg-purple-dark hover:bg-purple-light text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 cursor-pointer" %>
+      </div>
+    <% end %>
+
+    <%# Links adicionais do Devise (ex: "Esqueceu sua senha?", "Cadastrar-se") %>
+    <%= render "admin_users/shared/links", class: "text-center text-white text-sm mt-4" %>
+  </div>
+</div>
+
+<%# Bloco de Script JavaScript para a funcionalidade do olhinho %>
+<script>
+  // Função JavaScript para alternar a visibilidade da senha
+  function togglePasswordVisibility(spanElement) {
+    // Encontra o campo de senha que está diretamente antes do span do ícone
+    const passwordField = spanElement.previousElementSibling;
+    // Encontra o ícone (tag <i>) dentro do span
+    const toggleIcon = spanElement.querySelector('i');
+
+    // Verifica se o campo de senha existe
+    if (passwordField) {
+      // Se o tipo do campo for 'password' (escondido), muda para 'text' (visível)
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        // Remove o ícone de olho-fechado e adiciona o de olho-aberto
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+      } else {
+        // Se o tipo do campo for 'text' (visível), muda para 'password' (escondido)
+        passwordField.type = 'password';
+        // Remove o ícone de olho-aberto e adiciona o de olho-fechado
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+      }
+    } else {
+      // Loga um erro no console se o campo de senha não for encontrado
+      console.error("Campo de senha não encontrado para alternar visibilidade!");
+    }
+  }
+</script>

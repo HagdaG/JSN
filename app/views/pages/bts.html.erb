@@ -1,0 +1,252 @@
+<div class="py-12">
+  <h1 class="text-5xl font-bold text-purple-300 text-center mb-10" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">BTS - Beyond The Scene</h1>
+
+  <section class="mb-12 bg-purple-medium p-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Introdução</h2>
+    <p class="text-lg leading-relaxed mb-4 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      O BTS (Bangtan Sonyeondan) que em português significa "Meninos à Prova de Balas", também conhecido como Beyond The Scene, é um grupo sul-coreano formado pela Big Hit Entertainment (atualmente HYBE Corporation) que debutou em 13 de junho de 2013. Composto por sete membros — RM, Jin, Suga, J-Hope, Jimin, V e Jungkook — o BTS transcendeu as fronteiras do K-pop, tornando-se um fenômeno global e uma das maiores forças culturais do século XXI.
+    </p>
+    <p class="text-lg leading-relaxed text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      Eles são conhecidos por suas letras significativas que abordam temas como saúde mental, juventude, amor-próprio e desigualdades sociais, inspirando milhões de pessoas ao redor do mundo.
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-bold text-purple-300 text-center mb-6" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Membros do BTS</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <% members = [
+      { name: "RM (Kim Nam-joon)", file_name: "/rm.jpg", dob: "12 de setembro de 1994", position: "Líder, rapper principal", facts: [
+        "Idade: 31 anos (em 2025)",
+        "Data de nascimento: 12 de setembro de 1994",
+        "Signo: Virgem",
+        "Irmãos: Uma irmã mais nova",
+        "Estado civil: Solteiro",
+        "Local de nascimento: Ilsan, Coreia do Sul",
+        "Frase marcante: “Talvez eu tenha cometido um erro ontem, mas o eu de ontem ainda sou eu.”",
+        "Curiosidade: Aprendeu inglês assistindo à série 'Friends'."
+      ]},
+      { name: "Jin (Kim Seok-jin)", file_name: "/jin.jpg", dob: "4 de dezembro de 1992", position: "Vocalista, visual", facts: [
+        "Idade: 33 anos (em 2025)",
+        "Data de nascimento: 4 de dezembro de 1992",
+        "Signo: Sagitário",
+        "Irmãos: Um irmão mais velho",
+        "Estado civil: Solteiro",
+        "Local de nascimento: Gwacheon, Coreia do Sul",
+        "Frase marcante: “Sua presença pode trazer felicidade.”",
+        "Curiosidade: Conhecido como 'Worldwide Handsome' por sua beleza."
+      ]},
+      { name: "Suga (Min Yoon-gi)", file_name: "/suga.jpg", dob: "9 de março de 1993", position: "Rapper principal", facts: [
+        "Idade: 32 anos (em 2025)",
+        "Data de nascimento: 9 de março de 1993",
+        "Signo: Peixes",
+        "Irmãos: Um irmão mais velho",
+        "Estado civil: Solteiro",
+        "Local de nascimento: Daegu, Coreia do Sul",
+        "Frase marcante: “Mesmo que seja um caminho de espinhos, ainda corremos.”",
+        "Curiosidade: Inicialmente, foi informado que não precisaria dançar muito ao entrar no BTS."
+      ]},
+      { name: "J-Hope (Jung Ho-seok)", file_name: "/jhope.jpg", dob: "18 de fevereiro de 1994", position: "Rapper, dançarino principal", facts: [
+        "Idade: 31 anos (em 2025)",
+        "Data de nascimento: 18 de fevereiro de 1994",
+        "Signo: Aquário",
+        "Irmãos: Uma irmã mais velha",
+        "Estado civil: Solteiro",
+        "Local de nascimento: Gwangju, Coreia do Sul",
+        "Frase marcante: “A chave para a companhia é a confiança.”",
+        "Curiosidade: Considerado o 'sol' do grupo por sua energia positiva."
+      ]},
+      { name: "Jimin (Park Ji-min)", file_name: "/jimin.jpg", dob: "13 de outubro de 1995", position: "Vocalista, dançarino principal", facts: [
+        "Idade: 30 anos (em 2025)",
+        "Data de nascimento: 13 de outubro de 1995",
+        "Signo: Libra",
+        "Irmãos: Um irmão mais novo",
+        "Estado civil: Solteiro",
+        "Local de nascimento: Busan, Coreia do Sul",
+        "Frase marcante: “Você trabalhou duro — continue dando o seu melhor.”",
+        "Curiosidade: Conhecido por sua voz doce e habilidades de dança impressionantes."
+      ]},
+      { name: "V (Kim Tae-hyung)", file_name: "/v.jpg", dob: "30 de dezembro de 1995", position: "Vocalista", facts: [
+        "Idade: 30 anos (em 2025)",
+        "Data de nascimento: 30 de dezembro de 1995",
+        "Signo: Capricórnio",
+        "Irmãos: Um irmão e uma irmã mais novos",
+        "Estado civil: Solteiro",
+        "Local de nascimento: Daegu, Coreia do Sul",
+        "Frase marcante: “Talvez eu tenha cometido um erro ontem, mas o eu de ontem ainda sou eu.”",
+        "Curiosidade: É ambidestro e tem uma personalidade artística única."
+      ]},
+      { name: "Jungkook (Jeon Jung-kook)", file_name: "/jk.jpg", dob: "1 de setembro de 1997", position: "Vocalista principal, dançarino, maknae (membro mais jovem)", facts: [
+        "Idade: 28 anos (em 2025)",
+        "Data de nascimento: 1 de setembro de 1997",
+        "Signo: Virgem",
+        "Irmãos: Um irmão mais velho",
+        "Estado civil: Solteiro",
+        "Local de nascimento: Busan, Coreia do Sul",
+        "Frase marcante: “Aqueles que continuam tentando sem desistir são os que têm sucesso.”",
+        "Curiosidade: É conhecido como o 'Golden Maknae' por suas múltiplas habilidades."
+      ]}
+        ] %>
+          <% members.each do |member| %>
+            <div class="bg-purple-medium p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col items-center">
+              <h3 class="text-2xl font-semibold text-purple-extra-light mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><%= member[:name] %></h3>
+              <img src="<%= asset_path member[:file_name] %>" alt="<%= member[:name] %>" class="w-40 h-40 object-cover rounded-full mb-6 border-4 border-pink-neon">
+              <p class="text-sm text-white mb-2 **text-left**" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>Nascimento:</strong> <%= member[:dob] %></p>
+              <p class="text-sm text-white mb-4 **text-left**" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>Posição:</strong> <%= member[:position] %></p>
+              <div class="text-base leading-relaxed text-white w-full text-left">
+                <% member[:facts].each do |fact| %>
+                  <p class="mb-1" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+                    <% if fact.include?(':') %>
+                      <strong class="text-pink-neon"><%= fact.split(':')[0] %>:</strong><%= fact.split(':')[1..].join(':') %>
+                    <% else %>
+                      <%= fact %>
+                    <% end %>
+                  </p>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+    </div>
+  </section>
+
+  <section class="mb-12 bg-purple-medium p-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Carreira Musical e Conquistas</h2>
+    <h3 class="text-2xl font-semibold text-purple-extra-light mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Debut e Primeiros Anos (2013–2015)</h3>
+    <p class="text-lg leading-relaxed mb-4 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      O BTS debutou com o single "No More Dream", parte do álbum "2 Cool 4 Skool". Nos primeiros anos, o grupo abordou temas como juventude, sonhos e desafios sociais, destacando-se por suas letras significativas e performances energéticas.
+    </p>
+    <h3 class="text-2xl font-semibold text-purple-extra-light mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Ascensão ao Estrelato (2015–2017)</h3>
+    <p class="text-lg leading-relaxed mb-4 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      Com a trilogia "The Most Beautiful Moment in Life", o BTS ganhou reconhecimento internacional. Músicas como "I Need U" e "Run" mostraram uma maturidade artística crescente. O álbum "Wings" (2016) e a faixa "Blood Sweat & Tears" consolidaram sua posição no cenário global.
+    </p>
+    <h3 class="text-2xl font-semibold text-purple-extra-light mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Reconhecimento Global (2017–2019)</h3>
+    <p class="text-lg leading-relaxed mb-4 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      A série "Love Yourself" trouxe sucessos como "DNA", "Fake Love" e "IDOL", levando o BTS ao topo das paradas internacionais. Eles se tornaram o primeiro grupo sul-coreano a liderar a Billboard 200 e a se apresentar no Grammy Awards.
+    </p>
+    <h3 class="text-2xl font-semibold text-purple-extra-light mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Sucesso Contínuo e Inovação (2020–2021)</h3>
+    <p class="text-lg leading-relaxed mb-4 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      Durante a pandemia, o BTS lançou "Dynamite", seu primeiro single totalmente em inglês, que alcançou o topo da Billboard Hot 100. Outros sucessos incluem "Butter" e "Permission to Dance". Eles também participaram de eventos globais, como a Assembleia Geral da ONU.
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-bold text-purple-300 text-center mb-6" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Principais Vídeos Musicais</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="rounded-lg overflow-hidden shadow-md">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/rBG5L7UsUxA?si=WSo-xHlrIUDbB3wA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe> <%# <-- VÍDEO 1 (No More Dream) CORRIGIDO AQUI! %>
+        <div class="bg-gray-900 p-2 text-center text-white text-sm" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">BTS (방탄소년단) 'No More Dream' Official MV</div>
+      </div>
+      <div class="rounded-lg overflow-hidden shadow-md">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/hmE9f-TEutc?si=ZYTHCItquJvmvjee" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe> <%# <-- VÍDEO 2 (Blood Sweat & Tears) CORRIGIDO AQUI! %>
+        <div class="bg-gray-900 p-2 text-center text-white text-sm" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">BTS (방탄소년단) '피 땀 눈물 (Blood Sweat & Tears)' Official MV</div>
+      </div>
+      <div class="rounded-lg overflow-hidden shadow-md">
+        <iframe width="560" height="315" src="http://www.youtube.com/embed/gdZLi9oWNZg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe> <%# <-- VÍDEO 3 (Dynamite) CORRIGIDO AQUI! %>
+        <div class="bg-gray-900 p-2 text-center text-white text-sm" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">BTS (방탄소년단) 'Dynamite' Official MV</div>
+      </div>
+    </div>
+  </section>
+
+<section class="mb-12">
+  <h2 class="text-3xl font-bold text-purple-300 text-center mb-6" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Carreiras Solo</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <% solo_careers = [
+      { name: "RM", file_name: "/album-rm.jpg", description: "Lançou os álbuns 'Indigo' (2022) e o aclamado 'Right Place, Wrong Person' (2024), explorando temas pessoais e colaborações com artistas internacionais." },
+      { name: "Jin", file_name: "/album-jin.jpg", description: "Conhecido por suas baladas emocionais, Jin marcou com o single solo 'The Astronaut' (2022), um presente tocante aos fãs antes de seu alistamento militar, que continua sendo um de seus lançamentos mais recentes." },
+      { name: "Suga (Agust D)", file_name: "/album-suga.jpg", description: "Sob o alter ego Agust D, consolidou sua discografia com o álbum 'D-DAY' (2023), um projeto que concluiu sua trilogia de mixtapes, aprofundando-se em narrativas introspectivas e um estilo hip-hop marcante." },
+      { name: "J-Hope", file_name: "/album-hope.jpg", description: "Após o experimental 'Jack In The Box' (2022), J-Hope lançou o especial 'HOPE ON THE STREET VOL.1' (2024), um álbum que celebra suas raízes no dance e colaborações com diversos artistas, acompanhado de uma série documental." },
+      { name: "Jimin", file_name: "/album-jimin.jpg", description: "Debutou com o aclamado álbum solo 'FACE' (2023), que incluiu o hit global 'Like Crazy', e recentemente lançou o álbum 'MUSE' (2024), um projeto que explora novas sonoridades e aprofunda sua identidade artística, além do single digital 'Closer Than This' (2013)." },
+      { name: "V", file_name: "/album-v.jpg", description: "Lançou seu aguardado álbum solo 'Layover' (2023), mergulhando em um som R&B e jazz suave, com singles como 'Love Me Again' e 'Slow Dancing', solidificando sua identidade artística." },
+      { name: "Jungkook", file_name: "/album-jk.jpg", description: "Lançou seu aguardado álbum solo 'GOLDEN' (2023), um projeto de grande sucesso que inclui hits como 'Standing Next to You' e 'Seven (feat. Latto)', destacando seu poder vocal e alcance global."},
+
+    ] %>
+
+    <% solo_careers.each do |solo| %>
+      <div class="bg-purple-medium p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col items-center">
+        <img src="<%= asset_path solo[:file_name] %>" alt="<%= solo[:name] %> - Album Cover" class="w-32 h-32 object-cover rounded-lg mt-4 mb-4 flex-shrink-0 border-4 border-pink-neon">
+        <%# A linha abaixo foi removida para corrigir o erro "nil is not a valid asset source" %>
+        <%# <%= image_tag solo[:file_name] %>
+        <div class="text-center flex-grow min-w-0">
+          <h3 class="text-2xl font-semibold text-pink-neon mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><%= solo[:name] %></h3>
+          <p class="text-base leading-relaxed text-gray-300 break-words" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><%= solo[:description] %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+  <section class="mb-12 bg-purple-medium p-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Prêmios e Reconhecimentos</h2>
+    <p class="text-lg leading-relaxed mb-4 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      O BTS recebeu inúmeros prêmios, incluindo:
+    </p>
+    <ul class="list-disc list-inside text-lg leading-relaxed">
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>Billboard Music Awards:</strong> Vários prêmios, incluindo Top Social Artist e Top Duo/Group.</li>
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>American Music Awards:</strong> Artista do Ano, Duo/Grupo Favorito e outros.</li>
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>Grammy Awards:</strong> Primeiro grupo de K-pop a ser indicado na categoria Best Pop Duo/Group Performance.</li>
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>MTV Video Music Awards:</strong> Melhor Grupo, Melhor K-pop e outros.</li>
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>Ordens e Honrarias:</strong> Receberam a Ordem do Mérito Cultural da Coreia do Sul por suas contribuições à cultura.</li>
+    </ul>
+  </section>
+
+  <section class="mb-12 bg-purple-medium p-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Impacto Cultural e Social do BTS</h2>
+    <p class="text-lg leading-relaxed mb-4 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      O BTS não é apenas um grupo de música pop, mas um fenômeno cultural global que quebrou barreiras:
+    </p>
+    <ul class="list-disc list-inside text-lg leading-relaxed">
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>Mensagem Positiva:</strong> O BTS sempre abordou temas como saúde mental, autoestima, juventude, empoderamento e questões sociais, ajudando milhões de fãs pelo mundo a se sentirem representados.</li>
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>Ponte Cultural:</strong> Eles popularizaram o K-pop internacionalmente e ajudaram a colocar a cultura sul-coreana no centro das atenções globais.</li>
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>Reconhecimento Internacional:</strong> Foram convidados a discursar na ONU, trabalharam com a UNICEF na campanha "Love Myself" contra a violência juvenil, e participaram de campanhas de saúde mental.</li>
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>Influência na Moda e Beleza:</strong> Os membros são ícones de estilo, inspirando tendências globais de moda e cuidados pessoais.</li>
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>Recordes Mundiais:</strong> Quebraram recordes de visualizações no YouTube, vendas de álbuns, streams em plataformas digitais e prêmios internacionais.</li>
+    </ul>
+  </section>
+
+  <section class="mb-12 bg-purple-medium p-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Principais Músicas e Clipes</h2>
+    <ul class="list-disc list-inside text-lg leading-relaxed">
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>"No More Dream" (2013):</strong> Debut intenso que mostra a mensagem sobre lutar contra os padrões impostos.</li>
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>"I Need U" (2015):</strong> Canção que marcou a virada do BTS para um som mais emocional e maduro.</li>
+      <li class="mb-2 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;"><strong>"Blood Sweat & Tears" (2016):</strong> Visual cinematográfico e uma das músicas que consolidou o sucesso internacional.</li>
+      </ul>
+  </section>
+
+  <section class="text-center bg-purple-medium p-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-purple-extra-light mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Ajude o BTS a alcançar mais!</h2>
+    <p class="text-lg leading-relaxed mb-6 text-white" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+      Fique de olho em nossas redes sociais para links de votações e projetos de stream para ajudar o BTS!
+    </p>
+  </section>
+
+  <%# --- SEÇÃO DE LINKS DE VOTAÇÃO ATIVOS --- %>
+  <section class="mb-12 mt-12 bg-purple-dark p-8 rounded-lg shadow-xl">
+    <div class="max-w-md mx-auto text-center mb-6">
+      <h2 class="inline-block py-3 px-6 border-2 border-purple-light bg-white text-purple-medium font-bold rounded-full text-2xl shadow-lg" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+        Votações Ativas do BTS
+      </h2>
+    </div>
+
+    <% if @active_vote_links.present? %>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <% @active_vote_links.each do |link| %>
+          <div class="bg-purple-medium p-6 rounded-lg shadow-md border border-purple-light flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-semibold text-pink-neon mb-2" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+                <%= link.title %>
+              </h3>
+              <p class="text-md text-purple-extra-light mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
+                <%= link.description %>
+              </p>
+            </div>
+            <div class="text-right mt-4">
+              <%= link_to 'VOTAR AGORA', link.url, target: '_blank', rel: 'noopener noreferrer',
+                          class: 'inline-flex items-center justify-center px-4 py-2 border-2 border-pink-neon text-pink-neon bg-white font-bold rounded-full text-sm shadow-md transition duration-300 hover:bg-gold-accent hover:text-pink-neon active:bg-gold-accent active:text-pink-neon' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-lg leading-relaxed text-purple-extra-light text-center mt-6" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">No momento, não há votações ativas para o BTS. Fique de olho em nossas redes sociais para atualizações!</p>
+    <% end %>
+  </section>
+</div>

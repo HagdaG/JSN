@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /c/Users/SAMSUNG/AppData/Roaming/npm/yarn.cmd "$@"

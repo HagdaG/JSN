@@ -1,0 +1,66 @@
+<%# app/views/admin_users/sessions/new.html.erb - HTML/ERB ATUALIZADO %>
+
+<% content_for :title, "Login de Administrador" %>
+
+<div class="login-page-container">
+  <div class="login-container">
+    <div class="welcome-message">
+      <h2>Bem-vindo à página de administradores</h2>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form" }) do |f| %>
+
+      <div class="input-group">
+        <span class="icon"><i class="bi bi-person-fill"></i></span>
+        <%# Campo de E-mail: adicionei uma classe específica para o input se precisar de estilo exclusivo %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Login", class: "input-field input-field-email" %>
+      </div>
+
+      <div class="input-group password-group"> <%# Adicionei uma classe para o grupo da senha para o olhinho %>
+        <span class="icon"><i class="bi bi-lock-fill"></i></span>
+        <%# Campo de Senha: adicionei id para JS e classe para estilo exclusivo %>
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Senha", class: "input-field input-field-password", id: "password-field" %>
+        <%# Ícone do olhinho: com JS para alternar visibilidade %>
+        <span class="password-toggle" onclick="togglePasswordVisibility()">
+          <i class="bi bi-eye-slash" id="toggle-password-icon"></i>
+        </span>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field remember-me-checkbox" style="display: none;"> <%# Mantenho display: none se não quiser mostrar %>
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Entrar", class: "login-button" %>
+      </div>
+    <% end %>
+
+    <%# Não queremos links para "Esqueceu sua senha?" ou "Registrar" - estão comentados %>
+    <%# <%= render "devise/shared/links" %>
+  </div>
+</div>
+
+<script>
+  // Função JavaScript para alternar a visibilidade da senha
+  function togglePasswordVisibility() {
+    const passwordField = document.getElementById('password-field');
+    const toggleIcon = document.getElementById('toggle-password-icon');
+
+    if (passwordField && toggleIcon) {
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        toggleIcon.classList.remove('bi-eye-slash');
+        toggleIcon.classList.add('bi-eye');
+      } else {
+        passwordField.type = 'password';
+        toggleIcon.classList.remove('bi-eye');
+        toggleIcon.classList.add('bi-eye-slash');
+      }
+    } else {
+      console.error("Elementos de senha ou ícone não encontrados para alternar visibilidade!");
+    }
+  }
+</script>
