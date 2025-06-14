@@ -1,50 +1,75 @@
-<%# app/views/admin_users/sessions/new.html.erb - HTML/ERB ATUALIZADO %>
+<%# app/views/devise/sessions/new.html.erb - CÓDIGO FINAL COM AJUSTES DEFINITIVOS DE ALINHAMENTO %>
 
 <% content_for :title, "Login de Administrador" %>
 
-<div class="login-page-container">
-  <div class="login-container">
-    <div class="welcome-message">
-      <h2>Bem-vindo à página de administradores</h2>
-    </div>
+<%# Este div centraliza o formulário na tela e permite que a imagem de fundo do seu layout principal apareça %>
+<div class="flex items-center justify-center min-h-screen w-full p-4">
+  <%# O Quadro Roxo para o formulário de login %>
+  <div class="bg-purple-medium p-8 md:p-12 rounded-lg shadow-2xl w-full max-w-sm md:max-w-md lg:max-w-lg text-center relative overflow-hidden">
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form" }) do |f| %>
+    <%# Título "Bem-vindo" com letras pretas e sombra roxa neon %>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black mb-8 relative z-10">
+      Bem-vindo ao Painel <br class="md:hidden">de Administradores
+      <%# Span que cria o efeito de sombra. A estilização está no bloco <style> ao final. %>
+      <span class="absolute inset-0 block filter blur-sm opacity-75 z-0" style="color: #FF00FF;">
+        Bem-vindo ao Painel <br class="md:hidden">de Administradores
+      </span>
+    </h1>
 
-      <div class="input-group">
-        <span class="icon"><i class="bi bi-person-fill"></i></span>
-        <%# Campo de E-mail: adicionei uma classe específica para o input se precisar de estilo exclusivo %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Login", class: "input-field input-field-email" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <%# Campo de E-mail/Login com Ícone de Usuário %>
+      <div class="mb-6 text-left relative">
+        <label for="admin_user_email" class="block text-purple-extra-light text-lg font-semibold mb-2">E-mail</label>
+        <div class="relative flex items-center">
+          <%# Ícone de usuário - posição e cor definidas no <style> abaixo %>
+          <i class="fas fa-user icon-position text-gray-300 text-xl"></i>
+          <%# Campo de E-mail - padding e placeholder definidos no <style> abaixo %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Login",
+              class: "w-full p-3 rounded-lg bg-white border border-purple-dark text-black focus:outline-none focus:ring-2 focus:ring-pink-neon input-field-with-icon" %>
+        </div>
       </div>
 
-      <div class="input-group password-group"> <%# Adicionei uma classe para o grupo da senha para o olhinho %>
-        <span class="icon"><i class="bi bi-lock-fill"></i></span>
-        <%# Campo de Senha: adicionei id para JS e classe para estilo exclusivo %>
-        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Senha", class: "input-field input-field-password", id: "password-field" %>
-        <%# Ícone do olhinho: com JS para alternar visibilidade %>
-        <span class="password-toggle" onclick="togglePasswordVisibility()">
-          <i class="bi bi-eye-slash" id="toggle-password-icon"></i>
-        </span>
+      <%# Campo de Senha com Ícone de Cadeado e Toggle de Visibilidade %>
+      <div class="mb-6 text-left relative">
+        <label for="admin_user_password" class="block text-purple-extra-light text-lg font-semibold mb-2">Senha</label>
+        <div class="relative flex items-center">
+          <%# Ícone de cadeado - posição e cor definidas no <style> abaixo %>
+          <i class="fas fa-lock icon-position text-gray-300 text-xl"></i>
+          <%# Campo de Senha - padding e placeholder definidos no <style> abaixo %>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Senha",
+              class: "w-full p-3 rounded-lg bg-white border border-purple-dark text-black focus:outline-none focus:ring-2 focus:ring-pink-neon input-field-with-icon",
+              id: "password-field" %>
+          <%# Ícone do olhinho para alternar visibilidade (Font Awesome) %>
+          <span class="absolute right-3 cursor-pointer text-gray-400 hover:text-pink-neon" onclick="togglePasswordVisibility()">
+            <i class="fas fa-eye-slash" id="toggle-password-icon"></i>
+          </span>
+        </div>
       </div>
 
+      <%# Checkbox "Lembrar-me" (visível e estilizado) %>
       <% if devise_mapping.rememberable? %>
-        <div class="field remember-me-checkbox" style="display: none;"> <%# Mantenho display: none se não quiser mostrar %>
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
+        <div class="mb-6 flex items-center justify-center">
+          <%= f.check_box :remember_me, class: "h-5 w-5 text-pink-neon focus:ring-pink-neon border-purple-dark rounded cursor-pointer" %>
+          <%= f.label :remember_me, "Lembrar-me", class: "ml-2 text-purple-extra-light text-md cursor-pointer" %>
         </div>
       <% end %>
 
+      <%# Botão "Entrar" %>
       <div class="actions">
-        <%= f.submit "Entrar", class: "login-button" %>
+        <%= f.submit "Entrar", class: "w-full py-3 px-6 bg-pink-neon hover:bg-pink-neon-dark text-white font-bold text-xl rounded-lg shadow-lg transform transition duration-300 hover:scale-105 cursor-pointer" %>
       </div>
     <% end %>
 
-    <%# Não queremos links para "Esqueceu sua senha?" ou "Registrar" - estão comentados %>
-    <%# <%= render "devise/shared/links" %>
+    <%# Links do Devise (Esqueceu sua senha?, etc.) - Mantenha este bloco comentado se não quiser mostrá-los %>
+    <%# <div class="text-center mt-6"> %>
+      <%# <%= render "devise/shared/links" %>
+    <%# </div> %>
   </div>
 </div>
 
+<%# Script JavaScript para a funcionalidade de "mostrar/esconder senha" %>
 <script>
-  // Função JavaScript para alternar a visibilidade da senha
   function togglePasswordVisibility() {
     const passwordField = document.getElementById('password-field');
     const toggleIcon = document.getElementById('toggle-password-icon');
@@ -52,15 +77,43 @@
     if (passwordField && toggleIcon) {
       if (passwordField.type === 'password') {
         passwordField.type = 'text';
-        toggleIcon.classList.remove('bi-eye-slash');
-        toggleIcon.classList.add('bi-eye');
+        toggleIcon.classList.remove('fa-eye-slash'); // Usa Font Awesome
+        toggleIcon.classList.add('fa-eye'); // Usa Font Awesome
       } else {
         passwordField.type = 'password';
-        toggleIcon.classList.remove('bi-eye');
-        toggleIcon.classList.add('bi-eye-slash');
+        toggleIcon.classList.remove('fa-eye'); // Usa Font Awesome
+        toggleIcon.classList.add('fa-eye-slash'); // Usa Font Awesome
       }
     } else {
       console.error("Elementos de senha ou ícone não encontrados para alternar visibilidade!");
     }
   }
 </script>
+
+<%# Bloco de estilo CSS para ajustes finos de posicionamento e placeholder %>
+<style>
+  /* Estilo para a sombra do texto do título */
+  .text-black + span {
+    text-shadow: 0 0 5px var(--pink-neon), 0 0 10px var(--pink-neon), 0 0 15px var(--pink-neon), 0 0 20px var(--pink-neon);
+    color: transparent; /* Torna o texto do span transparente para a sombra aparecer */
+  }
+
+  /* Posicionamento do ícone dentro do campo */
+  .icon-position {
+    position: absolute;
+    left: 20px; /* Ajuste este valor para mover o ícone mais para a esquerda/direita */
+    z-index: 10; /* Garante que o ícone esteja acima do texto do placeholder */
+  }
+
+  /* Garante o espaçamento correto para o texto do input */
+  .input-field-with-icon {
+    padding-left: 60px !important; /* Ajuste este valor para mover o texto do placeholder mais para a direita */
+    /* Você pode ajustar o padding-right aqui se o ícone do olhinho estiver muito perto */
+  }
+
+  /* Estilo para o placeholder dentro dos campos de input */
+  .input-field-with-icon::placeholder {
+    color: #FFFFFF; /* Placeholder branco para máximo contraste */
+    opacity: 1; /* Garante que não haja transparência padrão */
+  }
+</style>

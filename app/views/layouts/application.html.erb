@@ -1,3 +1,4 @@
+<%# app/views/layouts/application.html.erb - Código Completo Final %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,17 +28,20 @@
     }
   </script>
 
-  <%# MOVIDO PARA AQUI: Seu CSS personalizado DEPOIS do Tailwind CDN %>
+  <%# Seu CSS personalizado (application.scss) DEPOIS do Tailwind CDN %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
 
+  <%# CDN do Font Awesome para os ícones %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+  <%# Estilo para o Body - Garante a imagem de fundo e outros estilos globais %>
   <style>
     body {
       background-color: var(--purple-dark); /* Cor de fundo principal do site */
-      background-image: url('/teste.jpeg');
-      background-size: 100%;
+      background-image: url('/teste.jpeg'); /* Sua imagem de fundo! */
+      background-size: cover; /* **Ajustado para cobrir a tela inteira** */
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -47,10 +51,27 @@
       display: flex;
       flex-direction: column;
     }
+
+    /* Estilos para a barra de rolagem */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.5);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--purple-light);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--purple-extra-light);
+    }
   </style>
 
 </head>
 <body class="flex flex-col min-h-screen">
+  <%# Barra de Navegação (NAV) - do seu código existente %>
   <nav class="bg-purple-dark p-4 shadow-lg w-full fixed top-0 z-50">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center">
@@ -73,12 +94,21 @@
     </div>
   </nav>
 
-  <main class="content-wrapper flex flex-col items-center justify-center" style="padding-top: 330px;">
-    <div class="container mx-auto p-8 rounded-lg shadow-2xl max-w-4xl w-full text-center">
-      <%= yield %>
-    </div>
+  <%# Conteúdo principal (onde as views serão renderizadas) %>
+  <main class="content-wrapper flex flex-col items-center justify-center" style="padding-top: 120px; flex-grow: 1;">
+    <%# Mensagens flash do Rails %>
+    <% if notice %>
+      <div class="bg-green-500 text-white p-3 rounded-md mb-4"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="bg-red-500 text-white p-3 rounded-md mb-4"><%= alert %></div>
+    <% end %>
+
+    <%# <%= yield %> irá renderizar o conteúdo da sua view aqui. %>
+    <%= yield %>
   </main>
 
+  <%# Rodapé (FOOTER) - do seu código existente %>
   <footer class="bg-purple-dark p-6 shadow-lg text-white text-center mt-auto">
     <div class="container mx-auto">
       <p class="mb-4 text-lg">Conecte-se com a JSN</p>
@@ -98,12 +128,12 @@
         </a>
       </div>
       
-      <%# BOTÃO: ACESSO COLABORADORES - AGORA COM MARGEM VERTICAL MAIOR %>
-      <%= link_to new_admin_user_session_path, class: 'inline-flex items-center justify-center px-4 py-2 bg-white text-purple-dark font-bold rounded-lg shadow-md hover:bg-purple-light hover:text-white active:bg-purple-light active:text-white transition duration-300 **my-6**' do %>
+      <%# BOTÃO: ACESSO COLABORADORES %>
+      <%= link_to new_admin_user_session_path, class: 'inline-flex items-center justify-center px-4 py-2 bg-white text-purple-dark font-bold rounded-lg shadow-md hover:bg-purple-light hover:text-white active:bg-purple-light active:text-white transition duration-300 my-6' do %>
         <i class="fas fa-users mr-2"></i> Acesso Colaboradores
       <% end %>
 
-      <p class="text-sm mt-2"> <%# Esta linha está com mt-2, que agora estará mais separada pelo my-6 do botão %>
+      <p class="text-sm mt-2">
         &copy; <%= Time.now.year %> JSN. Todos os direitos reservados.
         <br>
         Feito com paixão por ARMYs para ARMYs.

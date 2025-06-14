@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSN</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%# CDN do Tailwind CSS %>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'purple-dark': '#2E0A4E',
+            'purple-medium': '#5A1F8D',
+            'purple-light': '#8D3FD9',
+            'purple-extra-light': '#D4A8FF',
+            'pink-neon': '#FF00FF',
+            'blue-light': '#00BFFF',
+            'gold-accent': '#FFD700', /* Cor Dourada */
+            'pink-neon-dark': '#CC00CC', 
+          }
+        }
+      }
+    }
+  </script>
+
+  <%# MOVIDO PARA AQUI: Seu CSS personalizado DEPOIS do Tailwind CDN %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <style>
+    body {
+      background-color: var(--purple-dark); /* Cor de fundo principal do site */
+      background-image: url('/teste.jpeg');
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: 'Arial', sans-serif;
+      color: rgb(238, 231, 231); /* Cor do texto padrão para o site principal */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+
+</head>
+<body class="flex flex-col min-h-screen">
+  <main class="content-wrapper flex flex-col items-center justify-center" style="padding-top: 330px;">
+    <div class="container mx-auto p-8 rounded-lg shadow-2xl max-w-4xl w-full text-center">
+      <%= yield %>
+    </div>
+  </main>
+</body>
+</html>
