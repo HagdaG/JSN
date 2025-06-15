@@ -1,4 +1,4 @@
-<%# app/views/layouts/application.html.erb - Código Completo Final %>
+<%# app/views/layouts/application.html.erb - Código Final com Tailwind CSS via CDN %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%# CDN do Tailwind CSS %>
+  <%# CDN do Tailwind CSS (JS e CSS em um só script, com configurações customizadas) %>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -21,17 +21,21 @@
             'pink-neon': '#FF00FF',
             'blue-light': '#00BFFF',
             'gold-accent': '#FFD700', /* Cor Dourada */
-            'pink-neon-dark': '#CC00CC', 
+            'pink-neon-dark': '#CC00CC',
           }
         }
       }
     }
   </script>
+  <%# Opcional: Se você tiver diretivas @tailwind base, components, utilities,
+      elas iriam aqui em um bloco <style type="text/tailwindcss">
+      Ou em um arquivo CSS separado que você chamaria, mas para o CDN,
+      as classes já vêm prontas. %>
 
-  <%# Seu CSS personalizado (application.scss) DEPOIS do Tailwind CDN %>
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
+  <%# REMOVIDO: <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%# O CSS será servido via CDN do Tailwind e estilos inline, evitando a pré-compilação local problemática. %>
 
-  <%# CDN do Font Awesome para os ícones %>
+  <%# CDN do Font Awesome para os Ícones %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
@@ -41,7 +45,7 @@
     body {
       background-color: var(--purple-dark); /* Cor de fundo principal do site */
       background-image: url('/teste.jpeg'); /* Sua imagem de fundo! */
-      background-size: cover; /* **Ajustado para cobrir a tela inteira** */
+      background-size: cover; /* Ajustado para cobrir a tela inteira */
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -104,8 +108,10 @@
       <div class="bg-red-500 text-white p-3 rounded-md mb-4"><%= alert %></div>
     <% end %>
 
-    <%# <%= yield %> irá renderizar o conteúdo da sua view aqui. %>
-    <%= yield %>
+    <%# Este div envolve o conteúdo principal para aplicar um container, padding e sombra %>
+    <div class="container mx-auto p-8 rounded-lg shadow-2xl max-w-4xl w-full text-center">
+      <%= yield %>
+    </div>
   </main>
 
   <%# Rodapé (FOOTER) - do seu código existente %>
@@ -127,7 +133,7 @@
           <i class="fas fa-shopping-bag"></i>
         </a>
       </div>
-      
+
       <%# BOTÃO: ACESSO COLABORADORES %>
       <%= link_to new_admin_user_session_path, class: 'inline-flex items-center justify-center px-4 py-2 bg-white text-purple-dark font-bold rounded-lg shadow-md hover:bg-purple-light hover:text-white active:bg-purple-light active:text-white transition duration-300 my-6' do %>
         <i class="fas fa-users mr-2"></i> Acesso Colaboradores

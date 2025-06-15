@@ -1,0 +1,73 @@
+<%# app/views/admin/admin_users/_form.html.erb - CÓDIGO CORRIGIDO PARA ERRO 'signed_id' %>
+
+<%= form_with(model: [:admin, admin_user], local: true, html: { multipart: true }, class: 'bg-admin-sidebar p-8 rounded-lg shadow-lg max-w-lg mx-auto') do |form| %>
+  <%# Exibição de erros, se houver %>
+  <% if admin_user.errors.any? %>
+    <div class="bg-red-500 text-white p-4 rounded-md mb-6">
+      <h2 class="font-bold mb-2"><%= pluralize(admin_user.errors.count, "erro") %> impediram que este administrador fosse salvo:</h2>
+      <ul>
+        <% admin_user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= form.label :name, "Nome Completo (Opcional)", class: 'block text-admin-text text-sm font-bold mb-2' %>
+    <%= form.text_field :name, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :email, "E-mail", class: 'block text-admin-text text-sm font-bold mb-2' %>
+    <%= form.email_field :email, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :password, "Senha (deixe em branco se não quiser alterar)", class: 'block text-admin-text text-sm font-bold mb-2' %>
+    <%= form.password_field :password, autocomplete: "new-password", class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :password_confirmation, "Confirmação de Senha", class: 'block text-admin-text text-sm font-bold mb-2' %>
+    <%= form.password_field :password_confirmation, autocomplete: "new-password", class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :bio, "Biografia Curta (Para a página da Equipe JSN)", class: 'block text-admin-text text-sm font-bold mb-2' %>
+    <%= form.text_area :bio, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :social_link, "Link de Rede Social (Instagram, etc.)", class: 'block text-admin-text text-sm font-bold mb-2' %>
+    <%= form.text_field :social_link, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+  </div>
+
+  <div class="mb-6">
+    <%= form.label :photo, "Foto de Perfil (Opcional)", class: 'block text-admin-text text-sm font-bold mb-2' %>
+    <%= form.file_field :photo, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white' %>
+    <%# AQUI ESTÁ A CORREÇÃO: Apenas mostra a imagem se o registro já existe (persisted?) %>
+    <% if admin_user.persisted? && admin_user.photo.attached? %>
+      <p class="text-admin-text text-sm mt-2">Foto atual:</p>
+      <%= image_tag admin_user.photo, size: "100x100", class: "mt-1 rounded-full shadow" %>
+    <% end %>
+  </div>
+
+  <%# Campos que SÓ O ADMIN PRINCIPAL (VITÓRIA) PODE EDITAR %>
+  <% if current_admin_user.is_principal? %>
+    <div class="mb-4 flex items-center">
+      <%= form.check_box :is_principal, class: 'mr-2 leading-tight' %>
+      <%= form.label :is_principal, "Administrador Principal (Líder Fundadora - use com cuidado!)", class: 'text-admin-text text-sm font-bold' %>
+    </div>
+
+    <div class="mb-4 flex items-center">
+      <%= form.check_box :show_on_team_page, class: 'mr-2 leading-tight' %>
+      <%= form.label :show_on_team_page, "Exibir na Página 'Nossa Equipe' (Colaborador)", class: 'text-admin-text text-sm font-bold' %>
+    </div>
+  <% end %>
+
+  <div class="flex items-center justify-between">
+    <%= form.submit "Salvar Administrador", class: 'bg-admin-accent hover:bg-purple-dark text-white font-bold py-2 px-4 rounded-md cursor-pointer transition duration-300' %>
+    <%= link_to 'Voltar', admin_admin_users_path, class: 'text-admin-text hover:text-gray-400 text-sm ml-4' %>
+  </div>
+<% end %>

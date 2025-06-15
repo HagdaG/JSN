@@ -1,32 +1,36 @@
-<%# app/views/admin/dashboard/index.html.erb %>
+<%# app/views/admin/dashboard/index.html.erb - Somente HTML para os Gráficos (FINAL) %>
 
-<div class="relative"> <%# Adiciona um container relativo para o fluxo do documento %>
-  <h1 class="text-3xl font-bold mb-4 text-admin-accent">Dashboard Administrativo</h1>
+<div class="p-8">
+  <h1 class="text-3xl font-bold mb-6 text-admin-accent">Dashboard Administrativo</h1>
   <p class="text-xl text-admin-text mb-8">Vamos ver os dados de hoje!</p>
 
-  <%# Mensagem de Boas-vindas Fixa no Canto Superior Direito %>
-  <%# current_admin_user é um helper do Devise que te dá acesso ao usuário logado %>
-  <div class="fixed top-4 right-4 bg-admin-accent text-white py-2 px-4 rounded-lg shadow-lg z-50">
-    Olá, <%= current_admin_user.email.split('@').first.capitalize %>! <%# Exibe apenas a parte do e-mail antes do @, capitalizada %>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <%# Card: Mensagens por Status (Gráfico de Rosca) %>
+    <div class="bg-admin-sidebar p-6 rounded-lg shadow-lg flex flex-col justify-between">
+      <h2 class="text-xl font-bold text-admin-text mb-4">Mensagens por Status</h2>
+      <div class="flex-grow flex items-center justify-center h-48">
+        <%# Garante que há dados e que a soma deles é maior que zero para exibir o gráfico %>
+        <% if @messages_by_status.present? && @messages_by_status.values.sum > 0 %> 
+          <canvas id="messagesByStatusChart"></canvas> <%# Elemento Canvas para o gráfico de Rosca %>
+        <% else %>
+          <p class="text-admin-text text-center">Nenhuma mensagem disponível para status.</p>
+        <% end %>
+      </div>
+      <p class="text-sm text-gray-500 text-center mt-2">Distribuição das mensagens (Aprovadas, Pendentes, Rejeitadas)</p>
+    </div>
+
+    <%# Card: Mensagens Recebidas (Últimas 8 Semanas - Gráfico de Linha) %>
+    <div class="bg-admin-sidebar p-6 rounded-lg shadow-lg flex flex-col justify-between">
+      <h2 class="text-xl font-bold text-admin-text mb-4">Mensagens Recebidas (Últimas 8 Semanas)</h2>
+      <div class="flex-grow flex items-center justify-center h-48">
+        <%# Garante que há dados e que a soma deles é maior que zero para exibir o gráfico %>
+        <% if @recent_messages_trend.present? && @recent_messages_trend.values.sum > 0 %>
+          <canvas id="recentMessagesTrendChart"></canvas> <%# Elemento Canvas para o gráfico de Linha %>
+        <% else %>
+          <p class="text-admin-text text-center">Nenhuma mensagem recente disponível para tendência.</p>
+        <% end %>
+      </div>
+      <p class="text-sm text-gray-500 text-center mt-2">Tendência de novas mensagens recebidas no site.</p>
+    </div>
   </div>
-</div>
-
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
-  <%# Gráfico: Mensagens por Status %>
-  <div class="bg-admin-sidebar p-6 rounded-lg shadow-md">
-    <h2 class="text-xl font-semibold text-admin-text mb-4">Mensagens por Status</h2>
-    <%= pie_chart @messages_by_status, donut: true, colors: ["#00BFFF", "#FF00FF", "#FFD700"], library: { cutoutPercentage: 70 } %>
-    <p class="text-sm text-gray-400 mt-2 text-center">Distribuição das mensagens (Aprovadas, Pendentes, Rejeitadas)</p>
-  </div>
-
-  <%# Gráfico: Tendência de Mensagens Recebidas %>
-  <div class="bg-admin-sidebar p-6 rounded-lg shadow-md">
-    <h2 class="text-xl font-semibold text-admin-text mb-4">Mensagens Recebidas (Últimas 8 Semanas)</h2>
-    <%= line_chart @recent_messages_trend,
-                    colors: ["#8D3FD9"], library: { curve: 'monotoneCubic' },
-                    xtitle: "Semana", ytitle: "Nº de Mensagens" %>
-    <p class="text-sm text-gray-400 mt-2 text-center">Tendência de novas mensagens recebidas no site</p>
-  </div>
-
 </div>

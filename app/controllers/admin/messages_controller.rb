@@ -1,48 +1,68 @@
 # app/controllers/admin/messages_controller.rb
-# ESTE É O CONTROLADOR PARA GERENCIAR MENSAGENS NO PAINEL DE ADMINISTRAÇÃO
 
 module Admin
-  class MessagesController < Admin::ApplicationController # Herda de Admin::ApplicationController
-    # Os métodos de autenticação e helpers do Devise vêm de Admin::ApplicationController
+  class MessagesController < Admin::ApplicationController
+    before_action :set_message, only: %i[approve reject destroy]
+    before_action :set_message_counts, only: %i[index pending approved rejected]
 
-    layout "admin" # Define o layout específico para o painel de admin
-
+    # Ação padrão para /admin/messages: Exibe mensagens pendentes por padrão.
     def index
-      # --- ATENÇÃO: AS VARIÁVEIS DE MENSAGEM SÃO DEFINIDAS AQUI! ---
-      @pending_messages = Message.where(status: "pending").order(created_at: :asc)
-      @approved_messages = Message.where(status: "approved").order(created_at: :desc)
-      @rejected_messages = Message.where(status: "rejected").order(created_at: :desc)
-      # --- FIM DA DEFINIÇÃO DAS VARIÁVEIS ---
+      @messages = Message.where(status: :pending).order(created_at: :desc)
+      @current_filter = :pending
     end
 
+    # Ação para listar Mensagens Pendentes (/admin/messages/pending)
+    def pending
+      @messages = Message.where(status: :pending).order(created_at: :desc)
+      @current_filter = :pending
+      render :index
+    end
+
+    # Ação para listar Mensagens Aprovadas (/admin/messages/approved)
+    def approved
+      @messages = Message.where(status: :approved).order(updated_at: :desc)
+      @current_filter = :approved
+      render :index
+    end
+
+    # Ação para listar Mensagens Rejeitadas (/admin/messages/rejected)
+    def rejected
+      @messages = Message.where(status: :rejected).order(updated_at: :desc)
+      @current_filter = :rejected
+      render :index
+    end
+
+    # Ação para Aprovar uma mensagem
     def approve
-      @message = Message.find(params[:id])
-      if @message.update(status: "approved")
-        redirect_to admin_messages_path, notice: "Mensagem aprovada com sucesso!"
-      else
-        redirect_to admin_messages_path, alert: "Erro ao aprovar mensagem."
-      end
+      @message.update(status: :approved, approved: true)
+      # CORREÇÃO: Redirecionamento para caminho literal
+      redirect_to "/admin/messages/pending", notice: "Mensagem aprovada com sucesso! Você pode encontrá-la em Mensagens Aprovadas."
     end
 
+    # Ação para Rejeitar uma mensagem
     def reject
-      @message = Message.find(params[:id])
-      if @message.update(status: "rejected")
-        redirect_to admin_messages_path, notice: "Mensagem rejeitada com sucesso!"
-      else
-        redirect_to admin_messages_path, alert: "Erro ao rejeitar mensagem."
-      end
+      @message.update(status: :rejected, approved: false)
+      # CORREÇÃO: Redirecionamento para caminho literal
+      redirect_to "/admin/messages/pending", notice: "Mensagem rejeitada. Você pode encontrá-la em Mensagens Rejeitadas."
     end
 
     def destroy
-      @message = Message.find(params[:id])
       @message.destroy
-      redirect_to admin_messages_path, notice: "Mensagem excluída com sucesso."
+      # CORREÇÃO: Redirecionamento para caminho literal
+      redirect_to "/admin/messages/pending", notice: "Mensagem excluída."
     end
 
     private
 
-    def message_params
-      params.require(:message).permit(:content, :user_name)
+    def set_message
+      @message = Message.find(params[:id])
+    end
+
+    def set_message_counts
+      @pending_count = Message.where(status: :pending).count
+      @approved_count = Message.where(status: :approved).count
+      @rejected_count = Message.where(status: :rejected).count
+      @all_count = Message.count
     end
   end
 end

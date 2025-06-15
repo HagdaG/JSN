@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     get "/", to: "dashboard#index", as: "dashboard"
 
     # Rotas para gerenciar AdminUsers (administradores - CRIAR, EDITAR, EXCLUIR ADMINS)
-    resources :admin_users # <--- RESTAURADO AQUI!
+    resources :admin_users
 
     # Rota para o admin editar o próprio perfil (mantida, pois é para o próprio login)
     resource :profile, only: [ :edit, :update ], controller: "admin_users/registrations"
@@ -46,6 +46,11 @@ Rails.application.routes.draw do
       member do
         patch :approve
         patch :reject
+      end
+      collection do # NOVO: Rotas para filtros de coleção (sem ID)
+        get :pending  # /admin/messages/pending
+        get :approved # /admin/messages/approved
+        get :rejected # /admin/messages/rejected
       end
     end
 
@@ -58,7 +63,7 @@ Rails.application.routes.draw do
     end
 
     # Rotas para gerenciar parceiros no painel administrativo
-    resources :partners # <--- MANTIDO AQUI para gerenciar parceiros, NÃO ADMINUSERS
+    resources :partners
 
     # Rotas para gerenciar enquetes no painel administrativo
     resources :polls do

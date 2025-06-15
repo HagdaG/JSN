@@ -4,17 +4,26 @@ module Admin
   class DashboardController < Admin::ApplicationController
     def index
       # Mensagens por status (para gráfico de pizza)
-      # Transforma as chaves para algo mais legível (ex: "pending" vira "Pending")
-      # Adicionado .reject { |k, v| k.nil? } para evitar o erro se 'status' for nil
       @messages_by_status = Message.group(:status).count
-                                   .reject { |k, v| k.nil? } # <--- Adição desta linha
+                                   .reject { |k, v| k.nil? } # Adição para evitar erro se 'status' for nil
                                    .transform_keys { |k| k.humanize }
+
+      # ADICIONE ESTES PUTS PARA DEPURAR OS DADOS NO TERMINAL DO SERVIDOR:
+      puts "---------------------------------------------------------"
+      puts "Dados de Mensagens por Status: #{@messages_by_status.inspect}"
+      puts "Soma dos valores (status): #{@messages_by_status.values.sum}"
+      puts "---------------------------------------------------------"
 
       # Tendência de mensagens recebidas nas últimas 8 semanas (para gráfico de linha)
       # Requer a gem 'groupdate'
       @recent_messages_trend = Message.where("created_at > ?", 8.weeks.ago)
-                                      .group_by_week(:created_at, format: "%d/%m")
-                                      .count
+                                     .group_by_week(:created_at, format: "%d/%m")
+                                     .count
+
+      puts "---------------------------------------------------------"
+      puts "Dados de Mensagens Recentes (Tendência): #{@recent_messages_trend.inspect}"
+      puts "Soma dos valores (tendência): #{@recent_messages_trend.values.sum}"
+      puts "---------------------------------------------------------"
     end
   end
 end

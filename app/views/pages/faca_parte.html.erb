@@ -1,3 +1,5 @@
+<%# app/views/pages/faca_parte.html.erb - Código Final com Email de Candidatura Corrigido %>
+
 <div class="text-white py-8">
   <h1 class="text-5xl font-extrabold mb-8 text-purple-extra-light text-center" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">Faça Parte do JSN!</h1>
 
@@ -24,7 +26,10 @@
       <p class="text-md leading-relaxed mb-6" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
         Se você tem interesse em dedicar seu tempo e talento, entre em contato conosco!
       </p>
-      <%= link_to raw('<i class="fas fa-envelope mr-2"></i> Enviar Candidatura'), "mailto:voluntarios@jsnproject.com", class: 'bg-blue-light text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg transition duration-300 hover:bg-gold-accent hover:text-black active:bg-gold-accent active:text-black',
+      <%# LINHA MODIFICADA: Usando mail_to com o endereço de e-mail correto como o PRIMEIRO argumento %>
+      <%= mail_to "projetojuntoseshallownownext@gmail.com", raw('<i class="fas fa-envelope mr-2"></i> Enviar Candidatura'),
+                  subject: "Candidatura para Voluntário(a) JSN",
+                  class: 'bg-blue-light text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg transition duration-300 hover:bg-gold-accent hover:text-black active:bg-gold-accent active:text-black',
                   style: "text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;" %>
     </div>
 
@@ -50,7 +55,7 @@
 
   <div class="text-center mt-12 pt-8 border-t border-purple-light">
     <p class="text-xl font-semibold text-purple-extra-light mb-4" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
-      Qualquer forma de apoio é muito bem-vinda e essencial para o JSN Project!
+      Qualquer forma de apoio é muito bem-vinda e essencial para o JSN!
     </p>
     <p class="text-lg leading-relaxed" style="text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;">
       Sua participação faz a diferença para a nossa comunidade ARMY.

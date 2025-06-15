@@ -1,4 +1,3 @@
-<%# app/views/devise/sessions/new.html.erb - CÓDIGO FINAL COM AJUSTES DEFINITIVOS DE ALINHAMENTO %>
 
 <% content_for :title, "Login de Administrador" %>
 
@@ -50,16 +49,21 @@
       <%# Checkbox "Lembrar-me" (visível e estilizado) %>
       <% if devise_mapping.rememberable? %>
         <div class="mb-6 flex items-center justify-center">
-          <%= f.check_box :remember_me, class: "h-5 w-5 text-pink-neon focus:ring-pink-neon border-purple-dark rounded cursor-pointer" %>
+          <%= f.check_box :remember_me, class: "h-5 w-5 text-pink-neon focus:ring-pink-neon border-purple-dark rounded-cursor-pointer" %>
           <%= f.label :remember_me, "Lembrar-me", class: "ml-2 text-purple-extra-light text-md cursor-pointer" %>
         </div>
       <% end %>
 
-      <%# Botão "Entrar" %>
       <div class="actions">
         <%= f.submit "Entrar", class: "w-full py-3 px-6 bg-pink-neon hover:bg-pink-neon-dark text-white font-bold text-xl rounded-lg shadow-lg transform transition duration-300 hover:scale-105 cursor-pointer" %>
       </div>
     <% end %>
+
+    <%# NOVO BOTÃO "VOLTAR" - Adicionado aqui %>
+    <div class="mt-4"> <%# mt-4 para margem superior, separando-o do botão "Entrar" %>
+      <%= link_to 'Voltar para o Site', root_path, class: 'w-full py-3 px-6 bg-white hover:bg-gray-200 text-purple-dark font-bold text-xl rounded-lg shadow-lg transform transition duration-300 hover:scale-105 cursor-pointer border border-purple-dark' %>
+    </div>
+
 
     <%# Links do Devise (Esqueceu sua senha?, etc.) - Mantenha este bloco comentado se não quiser mostrá-los %>
     <%# <div class="text-center mt-6"> %>

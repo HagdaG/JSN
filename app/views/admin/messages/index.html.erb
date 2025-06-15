@@ -1,56 +1,137 @@
-<%# app/views/admin/messages/index.html.erb %>
+<%# app/views/admin/messages/index.html.erb - Código Final com Correções de Sintaxe e Botões %>
 
-<div class="container mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl text-gray-800">
-  <h1 class="text-4xl font-extrabold mb-8 text-purple-medium text-center">
-    Painel Administrativo JSN - Gerenciamento de Mensagens
-  </h1>
+<div class="p-8">
+  <h1 class="text-3xl font-bold mb-6 text-admin-accent">Gerenciar Mensagens</h1>
 
+  <%# Mensagens flash do Rails %>
   <% if notice %>
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+    <div class="bg-green-500 text-white p-3 rounded-md mb-4 max-w-full" role="alert">
       <%= notice %>
     </div>
   <% end %>
   <% if alert %>
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+    <div class="bg-red-500 text-white p-3 rounded-md mb-4 max-w-full" role="alert">
       <%= alert %>
     </div>
   <% end %>
 
+  <%# Botões de Filtro por Status - USANDO CAMINHOS LITERAIS AGORA %>
+  <div class="mb-6 flex flex-wrap gap-4 justify-center">
+    <%= link_to "/admin/messages/pending", class: "flex items-center px-6 py-3 rounded-lg font-bold text-lg transition duration-200 shadow-md transform hover:scale-105 #{(@current_filter == :pending || @current_filter.nil?) ? 'bg-pink-neon text-white' : 'bg-admin-sidebar text-admin-text hover:bg-admin-accent hover:text-white'}" do %>
+      Mensagens Pendentes (<%= @pending_count %>)
+    <% end %>
+
+    <%= link_to "/admin/messages/approved", class: "flex items-center px-6 py-3 rounded-lg font-bold text-lg transition duration-200 shadow-md transform hover:scale-105 #{(@current_filter == :approved) ? 'bg-pink-neon text-white' : 'bg-admin-sidebar text-admin-text hover:bg-admin-accent hover:text-white'}" do %>
+      Mensagens Aprovadas (<%= @approved_count %>)
+    <% end %>
+
+    <%= link_to "/admin/messages/rejected", class: "flex items-center px-6 py-3 rounded-lg font-bold text-lg transition duration-200 shadow-md transform hover:scale-105 #{(@current_filter == :rejected) ? 'bg-pink-neon text-white' : 'bg-admin-sidebar text-admin-text hover:bg-admin-accent hover:text-white'}" do %>
+      Mensagens Rejeitadas (<%= @rejected_count %>)
+    <% end %>
+  </div>
+
+  <%# Tabela Única para Mensagens Filtradas %>
   <div class="mb-10">
-    <h2 class="text-2xl font-bold mb-4 text-pink-neon">Mensagens Pendentes (<%= @pending_messages.count %>)</h2>
-    <% if @pending_messages.any? %>
-      <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-200">
+    <h2 class="text-2xl font-bold mb-4 text-pink-neon">
+      <%# Título dinâmico da lista atual %>
+      <%# Reescrita do bloco case para maior robustez na sintaxe %>
+      <% if @current_filter == :pending %>
+        Mensagens Pendentes
+      <% elsif @current_filter == :approved %>
+        Mensagens Aprovadas
+      <% elsif @current_filter == :rejected %>
+        Mensagens Rejeitadas
+      <% else %>
+        Mensagens Pendentes <%# Padrão, se nenhum filtro estiver ativo %>
+      <% end %>
+    </h2>
+
+    <% if @messages.any? %>
+      <div class="overflow-x-auto bg-admin-sidebar rounded-lg shadow-lg">
+        <table class="min-w-full leading-normal">
           <thead>
             <tr>
-              <th class="py-2 px-4 border-b text-left">Conteúdo</th>
-              <th class="py-2 px-4 border-b text-left">Enviado por</th>
-              <th class="py-2 px-4 border-b text-left">Data de Envio</th>
-              <th class="py-2 px-4 border-b text-center">Status</th>
-              <th class="py-2 px-4 border-b text-center">Ações</th>
+              <th class="px-5 py-3 border-b-2 border-gray-700 bg-gray-800 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                ID
+              </th>
+              <th class="px-5 py-3 border-b-2 border-gray-700 bg-gray-800 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                Conteúdo
+              </th>
+              <th class="px-5 py-3 border-b-2 border-gray-700 bg-gray-800 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                Remetente
+              </th>
+              <th class="px-5 py-3 border-b-2 border-gray-700 bg-gray-800 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                Data Envio
+              </th>
+              <th class="px-5 py-3 border-b-2 border-gray-700 bg-gray-800 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                Status
+              </th>
+              <th class="px-5 py-3 border-b-2 border-gray-700 bg-gray-800 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                Ações
+              </th>
             </tr>
           </thead>
           <tbody>
-            <% @pending_messages.each do |message| %>
-              <tr class="<%= cycle('bg-gray-50', 'bg-white') %>">
-                <td class="py-2 px-4 border-b"><%= message.content.truncate(50) %></td>
-                <td class="py-2 px-4 border-b"><%= message.user_name.presence || 'Anônimo' %></td>
-                <td class="py-2 px-4 border-b"><%= l message.created_at, format: :short %></td>
-                <td class="py-2 px-4 border-b text-center capitalize"><%= message.status %></td>
-                <td class="py-2 px-4 border-b text-center whitespace-nowrap">
-                  <%# Botão de Aprovar (Visto Verde) %>
-                  <%= button_to approve_admin_message_path(message), method: :patch, data: { turbo: true },
-                                class: 'inline-block text-green-500 hover:text-green-700 transition-colors duration-200' do %>
-                    <i class="fas fa-check-circle text-xl"></i>
+            <% @messages.each do |message| %>
+              <tr class="hover:bg-gray-700">
+                <td class="px-5 py-5 border-b border-gray-700 text-sm text-admin-text">
+                  <%= message.id %>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-700 text-sm text-admin-text">
+                  <%= truncate(message.content, length: 50) %>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-700 text-sm text-admin-text">
+                  <%= message.user_name.presence || 'Anônimo' %>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-700 text-sm text-admin-text">
+                  <%# Data de Envio formatada diretamente %>
+                  <%= message.created_at.strftime("%d/%m/%Y %H:%M") %>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-700 text-sm">
+                  <%# Status em Português %>
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                    <% if message.status == 'approved' %>bg-green-100 text-green-800
+                    <% elsif message.status == 'pending' %>bg-yellow-100 text-yellow-800
+                    <% elsif message.status == 'rejected' %>bg-red-100 text-red-800
+                    <% end %>">
+                    <%# Traduzindo o status aqui %>
+                    <% if message.status == 'approved' %>Aprovada
+                    <% elsif message.status == 'pending' %>Pendente
+                    <% elsif message.status == 'rejected' %>Rejeitada
+                    <% else %>
+                      <%= message.status.humanize %> <%# Fallback para outros status não previstos %>
+                    <% end %>
+                  </span>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-700 text-sm whitespace-nowrap">
+                  <%# Botões de Ação com Ícones %>
+                  <% if message.status == 'pending' %>
+                    <%# Botão Aprovar (Visto Verde) %>
+                    <%= button_to approve_admin_message_path(message), method: :patch, data: { turbo: true },
+                                  class: 'inline-block text-green-500 hover:text-green-700 transition-colors duration-200 mr-2' do %>
+                      <i class="fas fa-check-circle text-xl"></i>
+                    <% end %>
+                    <%# Botão Rejeitar (X Amarelo) %>
+                    <%= button_to reject_admin_message_path(message), method: :patch, data: { turbo: true },
+                                  class: 'inline-block text-yellow-500 hover:text-yellow-600 transition-colors duration-200' do %>
+                      <i class="fas fa-times-circle text-xl"></i>
+                    <% end %>
+                  <% elsif message.status == 'approved' %>
+                    <%# Botão Rejeitar (X Amarelo) - para aprovadas %>
+                    <%= button_to reject_admin_message_path(message), method: :patch, data: { turbo: true },
+                                  class: 'inline-block text-yellow-500 hover:text-yellow-600 transition-colors duration-200 mr-2' do %>
+                      <i class="fas fa-times-circle text-xl"></i>
+                    <% end %>
+                  <% elsif message.status == 'rejected' %>
+                    <%# Botão Aprovar (Visto Verde) - para rejeitadas %>
+                    <%= button_to approve_admin_message_path(message), method: :patch, data: { turbo: true },
+                                  class: 'inline-block text-green-500 hover:text-green-700 transition-colors duration-200 mr-2' do %>
+                      <i class="fas fa-check-circle text-xl"></i>
+                    <% end %>
                   <% end %>
-                  <%# Botão de Rejeitar (X Vermelho) %>
-                  <%= button_to reject_admin_message_path(message), method: :patch, data: { turbo: true },
+                  <%# Botão de Excluir (Lixeira Vermelha) - sempre visível %>
+                  <%= button_to admin_message_path(message), method: :delete, data: { turbo_confirm: 'Tem certeza que deseja excluir esta mensagem?' },
                                 class: 'inline-block text-red-500 hover:text-red-700 transition-colors duration-200 ml-2' do %>
-                    <i class="fas fa-times-circle text-xl"></i>
-                  <% end %>
-                  <%# Botão de Excluir (Lixeira Vermelha) %>
-                  <%= button_to admin_message_path(message), method: :delete, data: { turbo_confirm: 'Tem certeza que deseja excluir esta mensagem?' },
-                                class: 'inline-block text-gray-500 hover:text-gray-700 transition-colors duration-200 ml-2' do %>
                     <i class="fas fa-trash-alt text-lg"></i>
                   <% end %>
                 </td>
@@ -60,96 +141,7 @@
         </table>
       </div>
     <% else %>
-      <p class="text-gray-600">Nenhuma mensagem pendente no momento.</p>
+      <p class="text-admin-text mt-4 text-center">Nenhuma mensagem para exibir para este status.</p>
     <% end %>
-  </div>
-
-  <hr class="border-t-2 border-gray-300 my-10">
-
-  <div class="mb-10">
-    <h2 class="text-2xl font-bold mb-4 text-green-600">Mensagens Aprovadas (<%= @approved_messages.count %>)</h2>
-    <% if @approved_messages.any? %>
-      <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-200">
-          <thead>
-            <tr>
-              <th class="py-2 px-4 border-b text-left">Conteúdo</th>
-              <th class="py-2 px-4 border-b text-left">Enviado por</th>
-              <th class="py-2 px-4 border-b text-left">Data de Aprovação</th>
-              <th class="py-2 px-4 border-b text-center">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @approved_messages.each do |message| %>
-              <tr class="<%= cycle('bg-gray-50', 'bg-white') %>">
-                <td class="py-2 px-4 border-b"><%= message.content.truncate(50) %></td>
-                <td class="py-2 px-4 border-b"><%= message.user_name.presence || 'Anônimo' %></td>
-                <td class="py-2 px-4 border-b"><%= l message.updated_at, format: :short %></td>
-                <td class="py-2 px-4 border-b text-center whitespace-nowrap">
-                  <%# Botão de Rejeitar (X Vermelho) %>
-                  <%= button_to reject_admin_message_path(message), method: :patch, data: { turbo: true },
-                                class: 'inline-block text-red-500 hover:text-red-700 transition-colors duration-200' do %>
-                    <i class="fas fa-times-circle text-xl"></i>
-                  <% end %>
-                  <%# Botão de Excluir (Lixeira Vermelha) %>
-                  <%= button_to admin_message_path(message), method: :delete, data: { turbo_confirm: 'Tem certeza que deseja excluir esta mensagem?' },
-                                class: 'inline-block text-gray-500 hover:text-gray-700 transition-colors duration-200 ml-2' do %>
-                    <i class="fas fa-trash-alt text-lg"></i>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    <% else %>
-      <p class="text-gray-600">Nenhuma mensagem aprovada ainda.</p>
-    <% end %>
-  </div>
-
-  <hr class="border-t-2 border-gray-300 my-10">
-
-  <div>
-    <h2 class="text-2xl font-bold mb-4 text-red-600">Mensagens Rejeitadas (<%= @rejected_messages.count %>)</h2>
-    <% if @rejected_messages.any? %>
-      <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-200">
-          <thead>
-            <tr>
-              <th class="py-2 px-4 border-b text-left">Conteúdo</th>
-              <th class="py-2 px-4 border-b text-left">Enviado por</th>
-              <th class="py-2 px-4 border-b text-left">Data de Rejeição</th>
-              <th class="py-2 px-4 border-b text-center">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @rejected_messages.each do |message| %>
-              <tr class="<%= cycle('bg-gray-50', 'bg-white') %>">
-                <td class="py-2 px-4 border-b"><%= message.content.truncate(50) %></td>
-                <td class="py-2 px-4 border-b"><%= message.user_name.presence || 'Anônimo' %></td>
-                <td class="py-2 px-4 border-b"><%= l message.updated_at, format: :short %></td>
-                <td class="py-2 px-4 border-b text-center whitespace-nowrap">
-                  <%# Botão de Aprovar (Visto Verde) %>
-                  <%= button_to approve_admin_message_path(message), method: :patch, class: 'inline-block text-green-500 hover:text-green-700 transition-colors duration-200' do %>
-                    <i class="fas fa-check-circle text-xl"></i>
-                  <% end %>
-                  <%# Botão de Excluir (Lixeira Vermelha) %>
-                  <%= button_to admin_message_path(message), method: :delete, data: { turbo_confirm: 'Tem certeza que deseja excluir esta mensagem?' },
-                                class: 'inline-block text-gray-500 hover:text-gray-700 transition-colors duration-200 ml-2' do %>
-                    <i class="fas fa-trash-alt text-lg"></i>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    <% else %>
-      <p class="text-gray-600">Nenhuma mensagem rejeitada ainda.</p>
-    <% end %>
-  </div>
-
-  <div class="text-center mt-12">
-    <%= link_to 'Voltar para o Painel Principal', admin_dashboard_path, class: 'bg-purple-dark hover:bg-purple-medium text-white font-bold py-2 px-4 rounded' %>
   </div>
 </div>

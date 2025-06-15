@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_11_185638) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_14_192508) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -51,6 +51,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_11_185638) do
     t.string "name"
     t.text "bio"
     t.string "social_link"
+    t.boolean "show_on_team_page"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
@@ -78,6 +79,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_11_185638) do
     t.string "social_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
+    t.string "link"
   end
 
   create_table "poll_options", force: :cascade do |t|

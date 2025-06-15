@@ -1,13 +1,18 @@
 # app/controllers/admin/partners_controller.rb
+
 module Admin
   class PartnersController < Admin::ApplicationController
-    # Isso garante que apenas o admin principal tenha acesso a estas ações
-    # (se authenticate_principal_admin! estiver em Admin::ApplicationController, não defina aqui)
-    before_action :authenticate_admin_user!, only: [ :index, :new, :create, :edit, :update, :destroy ]
-    before_action :set_partner, only: %i[ edit update destroy ]
+    # Garante que apenas o admin principal tenha acesso a estas ações.
+    # authenticate_admin_user! já é herdado de Admin::ApplicationController
+    before_action :authenticate_principal_admin!
+    before_action :set_partner, only: %i[show edit update destroy]
 
     def index
       @partners = Partner.all.order(name: :asc)
+    end
+
+    def show
+      # @partner é definido por set_partner
     end
 
     def new
@@ -28,7 +33,6 @@ module Admin
     end
 
     def update
-      # @partner é definido por set_partner
       if @partner.update(partner_params)
         redirect_to admin_partners_path, notice: "Parceiro atualizado com sucesso!"
       else
@@ -37,7 +41,6 @@ module Admin
     end
 
     def destroy
-      # @partner é definido por set_partner
       @partner.destroy
       redirect_to admin_partners_path, notice: "Parceiro excluído."
     end
@@ -48,16 +51,10 @@ module Admin
       @partner = Partner.find(params[:id])
     end
 
-    # authenticate_principal_admin! deve estar em Admin::ApplicationController
-    # remova-o se já estiver no arquivo pai
-    # def authenticate_principal_admin!
-    #   unless current_admin_user&.is_principal?
-    #     redirect_to admin_dashboard_path, alert: "Você não tem permissão para acessar esta área."
-    #   end
-    # end
-
+    # Strong parameters para o Model Partner.
+    # Certifique-se de que esses campos existem no seu db/schema.rb para Partner.
     def partner_params
-      params.require(:partner).permit(:name, :bio, :social_link, :photo)
+      params.require(:partner).permit(:name, :description, :link, :photo) # :photo se você usa Active Storage
     end
   end
 end

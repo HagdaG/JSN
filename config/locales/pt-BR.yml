@@ -11,7 +11,7 @@ pt-BR:
       long: "%d de %B de %Y"
   devise:
     sessions:
-      signed_in: "Login realizado com sucesso."
+      signed_in: "" # Mude esta linha para uma string vazia para suprimir a mensagem de login
       signed_out: "Logout realizado com sucesso."
       already_signed_out: "Você já está desconectado(a)."
     failure:

@@ -1,3 +1,4 @@
+<%# app/views/layouts/admin.html.erb - Código Final do Layout Admin (Sem Bloco de Flash Messages) %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +7,10 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%# CDN do Tailwind CSS %>
+  <%# CDN do Tailwind CSS (JS e CSS em um só script, com configurações customizadas para o admin) %>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Configurações do Tailwind CSS para todas as cores customizadas
+    // Configurações do Tailwind CSS para todas as cores customizadas do admin
     tailwind.config = {
       theme: {
         extend: {
@@ -19,18 +20,33 @@
             'admin-text': '#E0E0E0',       /* Cor do texto principal do admin */
             'admin-accent': '#FF00FF',     /* Sua cor neon vibrante */
 
-            'purple-medium': '#8B008B',    /* Seu roxo médio (para o container de login) */
-            'purple-dark': '#4B0082',      /* Roxo mais escuro (para botões/bordas) */
-            'purple-light': '#DA70D6',     /* Roxo mais claro (para fundo de campo de input) */
+            'purple-medium': '#5A1F8D',    /* Roxo médio (agora usado no login, mas pode ser útil aqui) */
+            'purple-dark': '#2E0A4E',      /* Roxo mais escuro */
+            'purple-light': '#8D3FD9',     /* Roxo mais claro */
+            'purple-extra-light': '#D4A8FF', /* Roxo extra claro */
+            'pink-neon': '#FF00FF',        /* Sua cor neon vibrante */
+            'pink-neon-dark': '#CC00CC',   /* Versão escura do neon */
+            'gold-accent': '#FFD700',      /* Cor Dourada */
+            'blue-light': '#00BFFF',       /* Azul claro */
+
             'gray-input-text': '#343a40', /* Cor do texto dentro dos inputs */
           },
         }
       }
     }
   </script>
+  <%# Opcional: Se você tiver diretivas @tailwind base, components, utilities,
+      elas iriam aqui em um bloco <style type="text/tailwindcss"> %>
 
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%# REMOVIDO: <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%# O CSS será servido via CDN do Tailwind e estilos inline, evitando a pré-compilação local problemática. %>
+
+  <%# CDN do Font Awesome para os Ícones %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <%# CDN do Chart.js %>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
   <style>
@@ -38,7 +54,7 @@
     body.admin-layout {
       background-color: #333333; /* Fundo escuro para o admin */
       color: #E0E0E0; /* Texto claro */
-      /* Removendo a imagem de fundo que pode vir de application.scss */
+      /* Removendo a imagem de fundo que pode vir de application.scss (se for o caso) */
       background-image: none !important;
       background-attachment: unset !important;
       background-size: unset !important;
@@ -48,9 +64,24 @@
     html, body {
       height: 100%;
     }
+    /* Estilos para a barra de rolagem (pode ser repetido aqui para o admin se o layout principal não o cobre) */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.5);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--purple-light);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--purple-extra-light);
+    }
   </style>
 </head>
-<body class="admin-layout flex h-full"> <%# Adicionado h-full para garantir altura completa %>
+<body class="admin-layout flex h-full">
   <aside class="w-64 bg-admin-sidebar p-6 flex flex-col justify-between shadow-lg">
     <div>
       <h2 class="text-2xl font-bold mb-8 text-admin-accent">JSN Admin</h2>
@@ -63,16 +94,16 @@
           <% if current_admin_user&.is_principal? %> <%# Condição para mostrar apenas para admin principal %>
             <li>
               <%# Destaque para a página ativa de Gerenciamento de Administradores %>
-              <%= link_to 'Gerenciar Administradores', admin_admin_users_path, class: "block transition duration-200 #{current_page?(admin_admin_users_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %> <%# <--- CORRIGIDO A ROTA AQUI! %>
+              <%= link_to 'Gerenciar Administradores', admin_admin_users_path, class: "block transition duration-200 #{current_page?(admin_admin_users_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %>
+            </li>
+            <li>
+              <%# Destaque para a página ativa de Parceiros %>
+              <%= link_to 'Parceiros', admin_partners_path, class: "block transition duration-200 #{current_page?(admin_partners_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %>
             </li>
           <% end %>
           <li>
             <%# Destaque para a página ativa de Mensagens %>
             <%= link_to 'Mensagens', admin_messages_path, class: "block transition duration-200 #{current_page?(admin_messages_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %>
-          </li>
-          <li>
-            <%# Destaque para a página ativa de Parceiros %>
-            <%= link_to 'Parceiros', admin_partners_path, class: "block transition duration-200 #{current_page?(admin_partners_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %>
           </li>
           <li>
             <%# Destaque para a página ativa de Links de Votação %>
@@ -82,7 +113,6 @@
             <%# Destaque para a página ativa de Sorteios %>
             <%= link_to 'Sorteios', admin_sorteios_path, class: "block transition duration-200 #{current_page?(admin_sorteios_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %>
           </li>
-          
           <li>
             <%# Destaque para a página ativa de Novidades %>
             <%= link_to 'Novidades', admin_news_posts_path, class: "block transition duration-200 #{current_page?(admin_news_posts_path) ? 'font-bold text-admin-accent' : 'text-admin-text hover:text-admin-accent'}" %>
@@ -97,13 +127,8 @@
   </aside>
 
   <main class="flex-grow p-8 bg-admin-bg">
-    <%# Mensagens flash do Rails %>
-    <% if notice %>
-      <div class="bg-green-500 text-white p-3 rounded-md mb-4"><%= notice %></div>
-    <% end %>
-    <% if alert %>
-      <div class="bg-red-500 text-white p-3 rounded-md mb-4"><%= alert %></div>
-    <% end %>
+    <%# O bloco abaixo foi REMOVIDO COMPLETAMENTE para evitar duplicação de mensagens flash e erros de sintaxe. %>
+    <%# O Turbo do Rails 7 gerencia a exibição de mensagens flash automaticamente. %>
 
     <%# Perfil do Admin no canto superior direito %>
     <div class="fixed top-4 right-4 bg-admin-sidebar text-white py-2 px-4 rounded-full shadow-lg z-50 flex items-center space-x-2">
@@ -122,7 +147,144 @@
       <% end %>
     </div>
 
-    <%= yield %>
+    <%= yield %> <%# Este é o ponto onde o HTML da dashboard (incluindo os canvas) é renderizado %>
+
   </main>
+
+  <%# AQUI É ONDE O SCRIPT DE INICIALIZAÇÃO DOS GRÁFICOS DEVE IR %>
+  <%# Ele será executado APÓS todo o HTML (incluindo os canvas) ter sido carregado %>
+  <script>
+    // Adicionando um console.log para verificar se o script está sendo carregado
+    console.log("Script da Dashboard Administrativa carregado.");
+
+    // Funções para inicializar os gráficos, chamadas no DOMContentLoaded
+    function initializeCharts() {
+      console.log("Inicializando gráficos...");
+
+      // --- Gráfico de Rosca: Mensagens por Status ---
+      // Converte os dados do Rails (Ruby Hash) para um objeto JSON que o JavaScript pode usar
+      const messagesByStatusData = <%= raw @messages_by_status.to_json %>;
+      console.log("Dados de status:", messagesByStatusData);
+
+      // Verifica se o elemento canvas existe e se há dados para o gráfico
+      if (document.getElementById('messagesByStatusChart') && Object.keys(messagesByStatusData).length > 0 && Object.values(messagesByStatusData).some(val => val > 0)) {
+        console.log("Criando gráfico de status...");
+        const ctx1 = document.getElementById('messagesByStatusChart').getContext('2d');
+        new Chart(ctx1, {
+          type: 'doughnut', // Tipo de gráfico: rosca (doughnut)
+          data: {
+            labels: Object.keys(messagesByStatusData), // Nomes dos status (Aprovado, Pendente, Rejeitado)
+            datasets: [{
+              data: Object.values(messagesByStatusData), // Valores (contagens)
+              backgroundColor: [
+                '#34D399', // green-400 (Tailwind) para Aprovado
+                '#FBBF24', // yellow-400 (Tailwind) para Pendente
+                '#EF4444', // red-500 (Tailwind) para Rejeitado
+                '#6B7280'  // gray-500 para outros status, se houver
+              ],
+              hoverOffset: 4 // Deslocamento ao passar o mouse
+            }]
+          },
+          options: {
+            responsive: true,           // Torna o gráfico responsivo
+            maintainAspectRatio: false, // Permite que o gráfico use a altura do container pai (h-48)
+            plugins: {
+              legend: {
+                position: 'bottom', // Posição da legenda
+                labels: {
+                  color: '#E0E0E0' // admin-text (cor do texto da legenda)
+                }
+              },
+              title: {
+                display: false, // Título já está no H2 do card
+                text: 'Mensagens por Status',
+                color: '#E0E0E0'
+              }
+            }
+          }
+        });
+      } else {
+        console.log("Condição para gráfico de status não atendida ou sem dados.");
+      }
+
+      // --- Gráfico de Linha: Mensagens Recebidas (Últimas 8 Semanas) ---
+      // Converte os dados do Rails para JSON
+      const recentMessagesTrendData = <%= raw @recent_messages_trend.to_json %>;
+      console.log("Dados de tendência:", recentMessagesTrendData);
+
+      // Verifica se o elemento canvas existe e se há dados para o gráfico
+      if (document.getElementById('recentMessagesTrendChart') && Object.keys(recentMessagesTrendData).length > 0 && Object.values(recentMessagesTrendData).some(val => val > 0)) {
+        console.log("Criando gráfico de tendência...");
+        const ctx2 = document.getElementById('recentMessagesTrendChart').getContext('2d');
+        new Chart(ctx2, {
+          type: 'line', // Tipo de gráfico: linha
+          data: {
+            labels: Object.keys(recentMessagesTrendData), // Semanas
+            datasets: [{
+              label: 'Nº de Mensagens', // Legenda da linha
+              data: Object.values(recentMessagesTrendData), // Valores (contagens por semana)
+              borderColor: '#FF00FF', // pink-neon (cor da linha)
+              backgroundColor: 'rgba(255, 0, 255, 0.2)', // Fundo abaixo da linha (efeito suave neon)
+              tension: 0.1, // Suaviza as linhas do gráfico
+              fill: true // Preenche a área abaixo da linha
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false // Não exibir a legenda "Nº de Mensagens" (pois é um único dataset)
+              },
+              title: {
+                display: false // Título já está no H2 do card
+              }
+            },
+            scales: {
+              x: {
+                grid: {
+                  color: 'rgba(255,255,255,0.1)' // Linhas de grid mais claras para o eixo X
+                },
+                ticks: {
+                  color: '#E0E0E0' // Cor dos labels do eixo X
+                }
+              },
+              y: {
+                beginAtZero: true, // Começa o eixo Y do zero
+                grid: {
+                  color: 'rgba(255,255,255,0.1)' // Linhas de grid mais claras para o eixo Y
+                },
+                ticks: {
+                  color: '#E0E0E0', // Cor dos labels do eixo Y
+                  precision: 0 // Garante que os valores no eixo Y sejam números inteiros
+                }
+              }
+            }
+          }
+        });
+      } else {
+        console.log("Condição para gráfico de tendência não atendida ou sem dados.");
+      }
+    }
+
+    // Executa a inicialização dos gráficos quando o DOM estiver completamente carregado
+    document.addEventListener('DOMContentLoaded', initializeCharts);
+
+    // Para garantir que o Turbo/Turbolinks execute o script em cada visita (se estiver em uso)
+    document.addEventListener('turbo:load', initializeCharts); // Para Turbo Rails 7+
+    document.addEventListener('turbolinks:load', initializeCharts); // Para Turbolinks 5
+
+    // Adiciona um estilo básico para o canvas para garantir que ele tenha um tamanho inicial
+    const canvasStyle = `
+      #messagesByStatusChart, #recentMessagesTrendChart {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    `;
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = canvasStyle;
+    document.head.appendChild(styleSheet);
+  </script>
 </body>
 </html>

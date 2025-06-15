@@ -1,4 +1,4 @@
-# JSN_web/app/controllers/pages_controller.rb
+# app/controllers/pages_controller.rb
 
 class PagesController < ApplicationController
   def index
@@ -11,13 +11,19 @@ class PagesController < ApplicationController
   def jsn
   end
 
+  # Ação para a página "Equipe JSN" (rota: /equipe)
   def equipe
     # Busca a Vitória (Admin Principal)
-    @vitoria = AdminUser.find_by(email: "admin@jsn.com") # <--- Use o e-mail real da Vitória aqui!
+    # Recomendado: use o campo 'is_principal: true' como identificador principal.
+    # Isso é mais robusto do que um email hardcoded, caso o email mude.
+    @vitoria = AdminUser.find_by(is_principal: true)
 
-    # Busca todos os administradores que NÃO são principais (colaboradores)
-    # e que têm um nome definido para serem exibidos publicamente
-    @colaboradores = AdminUser.where(is_principal: false).where.not(name: [ nil, "" ]).order(name: :asc)
+    # Busca todos os administradores que NÃO são principais,
+    # e que estão marcados para aparecer na página da equipe ('show_on_team_page: true').
+    # Exclui a Vitória para não duplicar a exibição.
+    @colaboradores = AdminUser.where(is_principal: false, show_on_team_page: true)
+                              .where.not(id: @vitoria&.id) # Garante que a Vitória não apareça duas vezes
+                              .order(name: :asc) # Ordena por nome para exibição
 
     # Busca todos os parceiros para exibir na página da equipe
     @partners = Partner.all.order(name: :asc) # Ordena por nome
@@ -31,6 +37,6 @@ class PagesController < ApplicationController
   end
 
   def novidades
-    @news_posts = NewsPost.all # <--- ADICIONE ESTA LINHA AQUI!
+    @news_posts = NewsPost.all.order(created_at: :desc) # Adicionado NewsPost.all e ordenação
   end
 end

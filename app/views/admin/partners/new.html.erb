@@ -1,5 +1,6 @@
 <%# app/views/admin/partners/new.html.erb %>
 
-<h1 class="text-3xl font-bold mb-6 text-admin-accent">Novo Colaborador</h1> <%# NOVO TÍTULO %>
-
-<%= render 'form', admin_user: @admin_user %> <%# MUDOU: partner para admin_user %>
+<div class="p-8">
+  <h1 class="text-3xl font-bold mb-6 text-admin-text text-center">Adicionar Novo Parceiro</h1>
+  <%= render 'form', partner: @partner %>
+</div>
