@@ -19,19 +19,24 @@
     <tbody>
       <% @vote_links.each do |link| %>
         <tr class="border-b border-admin-bg">
-          <td class="py-3 px-4"><%= link.title %></td> <%# CORRIGIDO: link.title %>
+          <td class="py-3 px-4"><%= link.title %></td>
           <td class="py-3 px-4"><%= link_to link.url, link.url, target: "_blank", class: "text-admin-accent hover:underline" %></td>
-          <td class="py-3 px-4">
-            <%= link.is_active ? 'Sim' : 'Não' %>
+          <td class="py-3 px-4 flex items-center"> <%# Adicionado flex items-center para alinhar o texto e o ícone na mesma linha %>
+            <% if link.is_active %>
+              <span class="text-green-500 mr-2"><i class="fas fa-check-circle text-lg"></i> Sim</span> <%# Ícone verde e texto "Sim" %>
+            <% else %>
+              <span class="text-gray-400 mr-2"><i class="fas fa-check-circle text-lg"></i> Não</span> <%# Ícone cinza e texto "Não" %>
+            <% end %>
+            <%# AQUI ESTÁ A CORREÇÃO PARA O ERRO CSRF E A ALTERAÇÃO VISUAL DO BOTÃO %>
             <%= button_to toggle_active_admin_vote_link_path(link),
                           method: :patch,
-                          data: { turbo: true },
-                          class: 'ml-2 text-blue-400 hover:text-blue-600 transition-colors duration-200 border-none bg-transparent',
-                          form: { class: 'inline-block' } do %>
-              <i class="fas fa-check-circle text-green-500 text-lg hover:text-green-700"></i>
+                          data: { turbo: true, turbo_confirm: 'Tem certeza que deseja alterar o status?' }, # Adicionado turbo_confirm para confirmação antes da ação
+                          class: "ml-2 transition-colors duration-200 border-none bg-transparent #{link.is_active ? 'text-green-500 hover:text-green-700' : 'text-gray-400 hover:text-gray-600'}",
+                          form: { data: { turbo_frame: "_top" } } do %> <%# ESTA LINHA AJUDA A GARANTIR O TOKEN CSRF %>
+              <i class="fas fa-toggle-on text-lg"></i> <%# Ícone de toggle para indicar ação de ligar/desligar %>
             <% end %>
           </td>
-          <td class="py-3 px-4">
+          <td class="py-3 px-4 flex space-x-2 justify-center">
             <%= link_to edit_admin_vote_link_path(link), class: 'text-yellow-400 hover:text-yellow-600 mr-2 transition-colors duration-200' do %>
               <i class="fas fa-pencil-alt text-lg"></i>
             <% end %>

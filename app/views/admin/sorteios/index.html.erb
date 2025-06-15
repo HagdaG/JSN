@@ -23,20 +23,26 @@
         <tr class="border-b border-admin-bg">
           <td class="py-3 px-4"><%= sorteio.titulo %></td>
           <td class="py-3 px-4 text-sm"><%= truncate(sorteio.descricao, length: 50) %></td>
-          <td class="py-3 px-4"><%= link_to 'Acessar Link', sorteio.link_sorteio, target: "_blank", class: "text-admin-accent hover:underline" if sorteio.link_sorteio.present? %></td>
-          <td class="py-3 px-4"><%= sorteio.data_sorteio&.strftime("%d/%m/%Y %H:%M") %></td>
           <td class="py-3 px-4">
-            <%= sorteio.ativo ? 'Sim' : 'Não' %>
+            <%= link_to 'Acessar Link', sorteio.link_sorteio, target: "_blank", class: "text-admin-accent hover:underline" if sorteio.link_sorteio.present? %>
+          </td>
+          <td class="py-3 px-4"><%= sorteio.data_sorteio&.strftime("%d/%m/%Y %H:%M") %></td>
+          <td class="py-3 px-4 flex items-center"> <%# Adicionado flex items-center para alinhar o texto e o ícone na mesma linha %>
+            <% if sorteio.ativo %>
+              <span class="text-green-500 mr-2"><i class="fas fa-check-circle text-lg"></i> Sim</span> <%# Ícone verde e texto "Sim" %>
+            <% else %>
+              <span class="text-gray-400 mr-2"><i class="fas fa-check-circle text-lg"></i> Não</span> <%# Ícone cinza e texto "Não" %>
+            <% end %>
+            <%# AQUI ESTÁ A CORREÇÃO PARA O ERRO CSRF E A ALTERAÇÃO VISUAL DO BOTÃO %>
             <%= button_to toggle_ativo_admin_sorteio_path(sorteio),
                           method: :patch,
-                          data: { turbo: true },
-                          class: 'ml-2 text-blue-400 hover:text-blue-600 transition-colors duration-200 border-none bg-transparent',
-                          form: { class: 'inline-block' } do %>
-              <%# Ícone de Visto Verde para Ativar/Desativar %>
-              <i class="fas fa-check-circle text-green-500 text-lg hover:text-green-700"></i>
+                          data: { turbo: true, turbo_confirm: 'Tem certeza que deseja alterar o status?' }, # Confirmação antes da ação
+                          class: "ml-2 transition-colors duration-200 border-none bg-transparent #{sorteio.ativo ? 'text-green-500 hover:text-green-700' : 'text-gray-400 hover:text-gray-600'}",
+                          form: { data: { turbo_frame: "_top" } } do %> <%# ESSA LINHA AJUDA A GARANTIR O TOKEN CSRF %>
+              <i class="fas fa-toggle-on text-lg"></i> <%# Ícone de toggle para indicar ação de ligar/desligar %>
             <% end %>
           </td>
-          <td class="py-3 px-4">
+          <td class="py-3 px-4 flex space-x-2 justify-center">
             <%= link_to edit_admin_sorteio_path(sorteio), class: 'text-yellow-400 hover:text-yellow-600 mr-2 transition-colors duration-200' do %>
               <%# Ícone de Lápis Amarelo para Editar %>
               <i class="fas fa-pencil-alt text-lg"></i>
